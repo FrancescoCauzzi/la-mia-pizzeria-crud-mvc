@@ -5,7 +5,7 @@
 <div class="d-flex justify-content-center flex-column text-center __pizza-index">
     <h1 class="display-4">These are our pizzas</h1>
 
-    @* nella slide sintassi divers da questa sotto  *@
+    @* nella slide sintassi diversa da questa sotto  *@
     @model List<la_mia_pizzeria_crud_mvc.Models.Pizza>
 
     @if (Model.Count != 0)
@@ -13,14 +13,14 @@
         <div class="d-flex justify-content-center  p-3 __pizza-container">
             @foreach (var pizza in Model)
             {
-                <div class="d-flex flex-column __pizza-card">
+                <div class="card d-flex flex-column __pizza-card">
 
-                    <h3>@pizza.Name</h3>
-                    <img src="@(!string.IsNullOrEmpty(pizza.ImageUrl) ? pizza.ImageUrl : "/images/default_pizza.png")" alt="Pizza image">
-
-                    <p>Description: @pizza.Description</p>
-                    <p>Price: @pizza.Price &euro;</p>
-
+                    <img class="card-img-top" src='@(!string.IsNullOrEmpty(pizza.ImageUrl) ? pizza.ImageUrl : "/images/default_pizza.png")' alt="Pizza image">
+                    <div class="card-body">
+                        <h5 class="card-title">@pizza.Name</h5>
+                        <p class="card-text">@pizza.Description</p>
+                        <a href="@Url.Action("Details", "Pizza", new { id = pizza.Id })" class="btn btn-primary">See details</a>
+                    </div>                                   
                 </div>
             }
 
@@ -33,4 +33,8 @@
 
         </div>
     }
+    <div class="__pizza-index-go-back-button">
+        <a href="@Url.Action("Index","Home")" class="btn btn-primary">Go back to the homepage</a>
+    </div>
+    
 </div>
