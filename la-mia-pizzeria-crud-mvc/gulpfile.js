@@ -1,4 +1,6 @@
-﻿const { src, dest, watch, series } = require('gulp');
+﻿
+
+const { src, dest, watch, series } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 
 // Define the 'sass' task
@@ -18,4 +20,6 @@ function watchSass(cb) {
 
 exports.compileSass = compileSass;
 exports.watchSass = watchSass;
-exports.default = series(compileSass, watchSass);
+exports.default = series(compileSass, watchSass); 
+
+

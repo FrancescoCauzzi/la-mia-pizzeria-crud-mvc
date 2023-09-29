@@ -28,8 +28,20 @@ html body .__header .__navbar-toggler-icon {
 html body .__main-container {
   padding-top: 80px;
   padding-bottom: 40px;
-  background-color: #7ca021;
+  background-color: #862b2b;
   min-height: 93vh;
+}
+html body .__main-container .__home-imgs-ctn {
+  gap: 15px;
+}
+html body .__main-container .__home-imgs-ctn .__home-img {
+  min-width: 350px;
+  width: calc(32% - 7.5px);
+}
+html body .__main-container .__home-imgs-ctn .__home-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 html body .__main-container .__pizza-index .__pizza-container {
   display: flex;
