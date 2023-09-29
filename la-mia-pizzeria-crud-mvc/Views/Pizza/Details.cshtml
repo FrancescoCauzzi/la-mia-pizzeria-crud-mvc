@@ -1,1 +1,25 @@
-dettagli singola pizza
+@model Pizza
+
+<div class="__pizza-details-ctn container d-flex flex-column align-items-center">
+    <h1 class="card-title">@Model.Name</h1>
+    <div class="__pizza-details-card card d-flex flex-column align-items-center">
+        <img class="card-img-top" src='@Model.ImageUrl' alt="Pizza image">
+        <div class="card-body text-center">
+            
+            <p class="card-text">@Model.Description</p>
+            <p class="card-text">Price: @Model.Price €</p>            
+        </div>  
+    </div>
+    <div class="__btn-details-ctn d-flex gap-1 py-2">
+        <div class="">
+            <a href="@Url.Action("Index", "Pizza")" class="btn btn-primary">Go Back to the pizzas list</a>
+        </div>
+        <div class="">
+        <a href="@Url.Action("Index","Home")" class="btn btn-primary">Go back to the homepage</a>
+    </div>
+
+
+    </div>
+
+
+</div>
