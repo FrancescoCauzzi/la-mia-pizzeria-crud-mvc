@@ -26,9 +26,19 @@ namespace la_mia_pizzeria_crud_mvc
 
             app.UseAuthorization();
 
+            app.MapControllerRoute(name: "PizzasIndex",
+                pattern: "Our-Pizzas",
+                defaults: new { controller = "Pizza", action = "Index" });
+
+            app.MapControllerRoute(
+                name: "PizzaDetails",
+                pattern: "Our-Pizzas/{*name}",
+                defaults: new { controller = "Pizza", action = "Details" });
+
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");          
+            
 
             app.Run();
         }

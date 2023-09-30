@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using la_mia_pizzeria_crud_mvc.Models;
 using la_mia_pizzeria_crud_mvc.Database;
+using Microsoft.Docs.Samples;
 
 namespace la_mia_pizzeria_crud_mvc.Controllers
 {
@@ -35,21 +36,26 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         }
 
         // GET: PizzaController/Details/5
-        public ActionResult Details(int id)
+        
+        
+        public ActionResult Details(string name)
         {
             try
-            {
+            {                
                 using (PizzeriaContext db = new PizzeriaContext())
                 {
-                    Pizza? foundedPizza = db.Pizzas.Where(pizza => pizza.Id == id).FirstOrDefault();
+                    Pizza? foundedPizza = db.Pizzas.Where(pizza => pizza.Name == name).FirstOrDefault();
 
                     if (foundedPizza == null)
                     {
-                        return NotFound($"La pizza con {id} non è stata trovata!");
+                        return NotFound($"La pizza {name} non è stata trovata!");
                     }
                     else
                     {
-                        return View("Details", foundedPizza);
+                        
+                        
+                        return View(foundedPizza);
+                        
                     }
                 }
             }
@@ -63,6 +69,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 return View("Error", errorModel);
             }
         }
+        
 
 
         // GET: PizzaController/Create
@@ -127,5 +134,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 return View();
             }
         }
+
+
     }
 }
