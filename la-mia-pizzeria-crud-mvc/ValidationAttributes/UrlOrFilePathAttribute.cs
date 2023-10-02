@@ -11,7 +11,7 @@ namespace la_mia_pizzeria_crud_mvc.ValidationAttributes
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            var stringValue = (string)value;
+            var stringValue = (string)value!;
             if (string.IsNullOrEmpty(stringValue))
             {
                 // If the value is null or empty, validation succeeds

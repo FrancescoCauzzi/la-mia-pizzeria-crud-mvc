@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using la_mia_pizzeria_crud_mvc.Models;
 using la_mia_pizzeria_crud_mvc.Database;
 using Microsoft.Docs.Samples;
+using System.Globalization;
 
 namespace la_mia_pizzeria_crud_mvc.Controllers
 {
@@ -90,21 +91,23 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         {
             try
             {
-                //ModelState.Remove("ImageUrl");
-                if (!ModelState.IsValid)
-                {
-                    return View("Create", data);
-                }
+                int myVar= ModelState.Count;
                 if (string.IsNullOrEmpty(data.ImageUrl))
                 {
                     data.ImageUrl = "/images/default_pizza.png";
+                    ModelState.Remove("ImageUrl");
+                }
+                if (!ModelState.IsValid)
+                {
+                    return View("Create", data);
                 }
                 using (PizzeriaContext db = new PizzeriaContext())
                 {
                     Pizza newPizza = new Pizza();
                     newPizza.Name = data.Name;
                     newPizza.Description = data.Description;
-                    newPizza.Price = data.Price;
+                    
+                    newPizza.Price = data.Price;                    
                     newPizza.ImageUrl = data.ImageUrl;
 
                     db.Pizzas.Add(newPizza);
@@ -125,7 +128,8 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
 
             }
             
-        }
+        }       
+
 
         // GET: PizzaController/Edit/5
         public ActionResult Edit(int id)

@@ -26,7 +26,7 @@
             <div class="mb-3">
                 
                 <label for="Price"><strong>Price:</strong></label>
-                <input asp-for="Price" class="d-block w-100" />
+                <input asp-for="Price" type="text" class="d-block w-100" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="mb-3">
@@ -41,6 +41,13 @@
                 <input type="submit" class="btn btn-small btn-info" value="Save">
             </div>
         </form>
+        <div class="__btn-details-ctn d-flex gap-1 py-2">
+            <div class="">
+                <a href="@Url.Action("Index", "Pizza")" class="btn btn-primary">Go Back to the pizzas list</a>
+            </div>
+            <div class="">
+                <a href="@Url.Action("Index","Home")" class="btn btn-primary">Go back to the homepage</a>
+            </div>
 
         
 

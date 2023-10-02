@@ -23,7 +23,9 @@ namespace la_mia_pizzeria_crud_mvc.Models
 
         [Required(ErrorMessage = "This field is mandatory")]
         [Column(TypeName = "decimal(18, 2)")]
-        [Range(0,100)]
+        [Range(0.1,100)]
+        [NoDotAllowed]
+        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
         // Custom Validation

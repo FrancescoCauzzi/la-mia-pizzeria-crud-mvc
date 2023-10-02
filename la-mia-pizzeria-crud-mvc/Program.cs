@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
+
 namespace la_mia_pizzeria_crud_mvc
 {
     public class Program
@@ -10,6 +13,27 @@ namespace la_mia_pizzeria_crud_mvc
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+            
+            var defaultDateCulture = "en-US";
+            var ci = new CultureInfo(defaultDateCulture);
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            ci.NumberFormat.CurrencyDecimalSeparator = ".";
+
+            // Configure the Localization middleware
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(ci),
+                SupportedCultures = new List<CultureInfo>
+            {
+                ci,
+            },
+                SupportedUICultures = new List<CultureInfo>
+            {
+                ci,
+            }
+            });
+            
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
