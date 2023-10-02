@@ -15,6 +15,8 @@ namespace la_mia_pizzeria_crud_mvc
             var app = builder.Build();
 
             
+
+            
             var defaultDateCulture = "en-US";
             var ci = new CultureInfo(defaultDateCulture);
             ci.NumberFormat.NumberDecimalSeparator = ".";
@@ -34,6 +36,7 @@ namespace la_mia_pizzeria_crud_mvc
             }
             });
             
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

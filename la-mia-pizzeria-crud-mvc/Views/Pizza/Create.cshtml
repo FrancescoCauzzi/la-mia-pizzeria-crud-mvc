@@ -2,7 +2,6 @@
     ViewData["Title"] = "Insert New Pizza";
 
     @model Pizza
-
 }
 
 <div class="container">
@@ -26,8 +25,10 @@
             <div class="mb-3">
                 
                 <label for="Price"><strong>Price:</strong></label>
-                <input id="price"asp-for="Price"  class="d-block w-100" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                <input type="text" asp-for="Price" oninput="this.value = this.value.replace(/,/g, '.')" class="d-block w-100" />
+                <span asp-validation-for="Price" class="text-danger"></span>                
+
+              
             </div>
             <div class="mb-3">
                 
