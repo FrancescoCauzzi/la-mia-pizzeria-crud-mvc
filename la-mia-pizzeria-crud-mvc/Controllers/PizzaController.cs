@@ -91,7 +91,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         {
             try
             {
-                int myVar= ModelState.Count;
+               
                 if (string.IsNullOrEmpty(data.ImageUrl))
                 {
                     data.ImageUrl = "/images/default_pizza.png";
