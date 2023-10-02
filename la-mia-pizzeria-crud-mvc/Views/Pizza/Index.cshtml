@@ -3,6 +3,9 @@
 }
 
 <div class="d-flex justify-content-center flex-column text-center __pizza-index">
+    <div class="__pizza-index-go-back-button">
+        <a href="@Url.Action("Create","Pizza")" class="btn btn-primary">Create New Pizza</a>
+    </div>
     <h1 class="display-4">These are our pizzas</h1>
 
     @* nella slide sintassi diversa da questa sotto  *@
@@ -34,6 +37,7 @@
 
         </div>
     }
+    
     <div class="__pizza-index-go-back-button">
         <a href="@Url.Action("Index","Home")" class="btn btn-primary">Go back to the homepage</a>
     </div>

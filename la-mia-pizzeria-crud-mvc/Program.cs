@@ -34,6 +34,12 @@ namespace la_mia_pizzeria_crud_mvc
                 name: "PizzaDetails",
                 pattern: "Our-Pizzas/{*name}",
                 defaults: new { controller = "Pizza", action = "Details" });
+            /*
+            app.MapControllerRoute(
+                name: "PizzaCreate",
+                pattern: "Our-Pizzas/Create",
+                defaults: new { controller = "Pizza", action = "Create" });
+            */
 
             app.MapControllerRoute(
                 name: "default",

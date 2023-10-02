@@ -48,14 +48,18 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
 
                     if (foundedPizza == null)
                     {
-                        return NotFound($"La pizza {name} non è stata trovata!");
+
+                        //return NotFound($"The item {name} was not found!");
+                        var errorModel = new ErrorViewModel
+                        {
+                            ErrorMessage = $"The item '{name}' was not found!",
+                            RequestId = HttpContext.TraceIdentifier // This is optional, just if you want to include the request ID
+                        };
+                        return View("Error", errorModel);
                     }
                     else
                     {
-                        
-                        
                         return View(foundedPizza);
-                        
                     }
                 }
             }
@@ -69,28 +73,58 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 return View("Error", errorModel);
             }
         }
-        
+
 
 
         // GET: PizzaController/Create
+        [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return View("Create");
         }
 
         // POST: PizzaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Pizza data)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                //ModelState.Remove("ImageUrl");
+                if (!ModelState.IsValid)
+                {
+                    return View("Create", data);
+                }
+                if (string.IsNullOrEmpty(data.ImageUrl))
+                {
+                    data.ImageUrl = "/images/default_pizza.png";
+                }
+                using (PizzeriaContext db = new PizzeriaContext())
+                {
+                    Pizza newPizza = new Pizza();
+                    newPizza.Name = data.Name;
+                    newPizza.Description = data.Description;
+                    newPizza.Price = data.Price;
+                    newPizza.ImageUrl = data.ImageUrl;
+
+                    db.Pizzas.Add(newPizza);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                var errorModel = new ErrorViewModel
+                {
+                    ErrorMessage = $"An error occurred while inserting the new pizza in the database: {ex.InnerException}",
+                    RequestId = HttpContext.TraceIdentifier 
+                };
+                return View("Error", errorModel);
+
             }
+            
         }
 
         // GET: PizzaController/Edit/5
