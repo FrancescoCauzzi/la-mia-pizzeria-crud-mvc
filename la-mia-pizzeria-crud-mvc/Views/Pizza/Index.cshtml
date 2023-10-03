@@ -2,9 +2,9 @@
     ViewData["Title"] = "Our Pizzas";
 }
 
-<div class="d-flex justify-content-center flex-column text-center __pizza-index">
+<div class="container d-flex justify-content-center flex-column text-center __pizza-index">
     <div class="__pizza-index-go-back-button">
-        <a href="@Url.Action("Create","Pizza")" class="btn btn-primary">Create New Pizza</a>
+        <a href="@Url.Action("Create","Pizza")" class="btn btn-primary">Add New Pizza</a>
     </div>
     <h1 class="display-4">These are our pizzas</h1>
 
@@ -24,16 +24,38 @@
                         <p class="card-text">@pizza.Description</p>
                         <p class="card-text">@pizza.Price €</p>
                         <div class="__buttons-card-ctn d-flex gap-1 justify-content-between">
-                            <a href="@Url.Action("Details", "Pizza", new { name = pizza.Name })" class="btn btn-primary">See details</a>
-                            <a href="@Url.Action("Update", "Pizza", new { name = pizza.Name })" class="btn btn-primary">Edit this pizza</a>
+                            <a href="@Url.Action("Details", "Pizza", new { name = pizza.Name })" class="btn btn-primary">Details</a>
+                            <a href="@Url.Action("Update", "Pizza", new { name = pizza.Name })" class="btn btn-primary">Edit</a>
 
                             <form asp-controller="Pizza" asp-action="Delete" asp-route-id="@pizza.Id" method="post">
                                 @Html.AntiForgeryToken()
-                                
-                                    <button type="submit" class="__delete-btn btn btn-danger p-2 btn-sm">
+
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop-@pizza.Id">
                                     <i class="fas fa-trash-can">
                                     </i>
-                                    </button>
+                                 </button>
+                                 @*Bootstrap Modal*@
+                                <div class="modal fade" id="staticBackdrop-@pizza.Id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete confirmation</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure that you want to delete the pizza: '@pizza.Name' ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+
+                                
                                 
                                 
                             </form>
