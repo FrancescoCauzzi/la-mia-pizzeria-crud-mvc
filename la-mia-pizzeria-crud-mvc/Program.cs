@@ -1,4 +1,5 @@
 using la_mia_pizzeria_crud_mvc.CustomLoggers;
+using la_mia_pizzeria_crud_mvc.Database;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 
@@ -15,6 +16,8 @@ namespace la_mia_pizzeria_crud_mvc
             
             // Dependency Injection
             builder.Services.AddScoped<ICustomLogger, CustomFileLogger>();
+
+            builder.Services.AddScoped<PizzeriaContext, PizzeriaContext>();
 
             var app = builder.Build();
 

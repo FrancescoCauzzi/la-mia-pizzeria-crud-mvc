@@ -3,3 +3,47 @@
 03-10-2023 17:26:26 LOG: User has reached the page Pizza Tuna And Onions > Details
 03-10-2023 17:26:39 LOG: User has reached the page Pizza > Index
 03-10-2023 17:26:42 LOG: User has reached the page Pizza Ham And Mushrooms > Details
+03-10-2023 17:36:08 LOG: User has reached the page Pizza > Index
+03-10-2023 17:36:16 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:36:24 LOG: User has reached the page Pizza > Index
+03-10-2023 17:36:26 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:36:31 LOG: User has reached the page Pizza > Index
+03-10-2023 17:36:33 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:36:35 LOG: User has reached the page Pizza > Index
+03-10-2023 17:37:07 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:38:16 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:55:14 LOG: User has reached the page Pizza > Index
+03-10-2023 17:56:46 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:57:17 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:57:29 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:58:12 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:58:18 LOG: User has reached the page Pizza > Index
+03-10-2023 17:58:29 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:58:55 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:59:15 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:59:54 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 18:00:07 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 18:00:24 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 18:01:13 LOG: User has reached the page Pizza > Index
+03-10-2023 18:01:30 LOG: User has reached the page Pizza > Index
+03-10-2023 18:01:35 LOG: User has reached the page Pizza > Index
+03-10-2023 18:01:47 LOG: User has reached the page Pizza > Index
+03-10-2023 18:01:49 LOG: User has reached the page Pizza Pizza Test > Details
+03-10-2023 18:01:53 LOG: User has reached the page Pizza > Index
+03-10-2023 18:01:59 LOG: User has reached the page Pizza Ham And Mushrooms > Details
+03-10-2023 18:05:35 LOG: User has reached the page Pizza > Index
+03-10-2023 18:05:39 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 18:06:57 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 18:07:26 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 18:07:38 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 18:08:02 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 18:09:57 LOG: User has reached the page Pizza > Index
+03-10-2023 18:10:01 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 18:10:14 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 18:10:22 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 18:10:55 LOG: User has reached the page Pizza > Index
+03-10-2023 18:11:12 LOG: User has reached the page Pizza > Index
+03-10-2023 18:11:16 LOG: User has reached the page Pizza Pizza Test > Details
+03-10-2023 18:11:35 LOG: User has reached the page Pizza > Index
+03-10-2023 18:11:55 LOG: User has reached the page Pizza > Index
+03-10-2023 18:11:58 LOG: User has reached the page Pizza > Index

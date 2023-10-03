@@ -14,9 +14,12 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         // Dependency Injection
         private ICustomLogger _myLogger;
 
-        public PizzaController(ICustomLogger myLogger)
+        private PizzeriaContext _myDb;
+
+        public PizzaController(ICustomLogger myLogger, PizzeriaContext myDb)
         {
             _myLogger = myLogger;
+            _myDb = myDb;
         }
 
 
@@ -27,12 +30,11 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
             try
             {
                 _myLogger.WriteLog("User has reached the page Pizza > Index");
-                using (PizzeriaContext db = new PizzeriaContext())
-                {
-                    List<Pizza> pizzas = db.Pizzas.ToList<Pizza>();
+                
+                List<Pizza> pizzas = _myDb.Pizzas.ToList<Pizza>();
 
-                    return View("Index", pizzas);
-                }
+                return View("Index", pizzas);
+                
             }
             catch (Exception ex)
             {
@@ -57,26 +59,25 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
             {
                 _myLogger.WriteLog($"User has reached the page Pizza {name} > Details");
 
-                using (PizzeriaContext db = new PizzeriaContext())
+                
+                Pizza? foundedPizza = _myDb.Pizzas.Where(pizza => pizza.Name == name).FirstOrDefault();
+
+                if (foundedPizza == null)
                 {
-                    Pizza? foundedPizza = db.Pizzas.Where(pizza => pizza.Name == name).FirstOrDefault();
 
-                    if (foundedPizza == null)
+                    //return NotFound($"The item {name} was not found!");
+                    var errorModel = new ErrorViewModel
                     {
-
-                        //return NotFound($"The item {name} was not found!");
-                        var errorModel = new ErrorViewModel
-                        {
-                            ErrorMessage = $"The item '{name}' was not found!",
-                            RequestId = HttpContext.TraceIdentifier // This is optional, just if you want to include the request ID
-                        };
-                        return View("Error", errorModel);
-                    }
-                    else
-                    {
-                        return View(foundedPizza);
-                    }
+                        ErrorMessage = $"The item '{name}' was not found!",
+                        RequestId = HttpContext.TraceIdentifier // This is optional, just if you want to include the request ID
+                    };
+                    return View("Error", errorModel);
                 }
+                else
+                {
+                    return View(foundedPizza);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -115,20 +116,19 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 {
                     return View("Create", data);
                 }
-                using (PizzeriaContext db = new PizzeriaContext())
-                {
-                    Pizza newPizza = new Pizza();
-                    newPizza.Name = data.Name;
-                    newPizza.Description = data.Description;
+                
+                Pizza newPizza = new Pizza();
+                newPizza.Name = data.Name;
+                newPizza.Description = data.Description;
 
-                    newPizza.Price = data.Price;
-                    newPizza.ImageUrl = data.ImageUrl;
+                newPizza.Price = data.Price;
+                newPizza.ImageUrl = data.ImageUrl;
 
-                    db.Pizzas.Add(newPizza);
-                    db.SaveChanges();
+                _myDb.Pizzas.Add(newPizza);
+                _myDb.SaveChanges();
 
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Index");
+                
 
             }
             catch (Exception ex)
@@ -150,25 +150,24 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         {
             try
             {
-                using (PizzeriaContext db = new PizzeriaContext())
+                
+                Pizza? pizzaToEdit = _myDb.Pizzas.Where(Pizza => Pizza.Name == name).FirstOrDefault();
+
+                if (pizzaToEdit == null)
                 {
-                    Pizza? pizzaToEdit = db.Pizzas.Where(Pizza => Pizza.Name == name).FirstOrDefault();
-
-                    if (pizzaToEdit == null)
+                    var errorModel = new ErrorViewModel
                     {
-                        var errorModel = new ErrorViewModel
-                        {
-                            ErrorMessage = $"The pizza you are searching has not been found",
-                            RequestId = HttpContext.TraceIdentifier
-                        };
-                        return View("Error", errorModel);
-                    }
-                    else
-                    {
-                        return View("Update", pizzaToEdit);
-                    }
-
+                        ErrorMessage = $"The pizza you are searching has not been found",
+                        RequestId = HttpContext.TraceIdentifier
+                    };
+                    return View("Error", errorModel);
                 }
+                else
+                {
+                    return View("Update", pizzaToEdit);
+                }
+
+               
             }
             catch (Exception ex)
             {
@@ -194,30 +193,29 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 {
                     return View("Update", modifiedPizza);
                 }
-                using (PizzeriaContext db = new PizzeriaContext())
+                
+                Pizza? PizzaToUpdate = _myDb.Pizzas.Find(id);
+
+                if (PizzaToUpdate != null)
                 {
-                    Pizza? PizzaToUpdate = db.Pizzas.Find(id);
+                    EntityEntry<Pizza> entryEntity = _myDb.Entry(PizzaToUpdate);
+                    entryEntity.CurrentValues.SetValues(modifiedPizza);
 
-                    if (PizzaToUpdate != null)
-                    {
-                        EntityEntry<Pizza> entryEntity = db.Entry(PizzaToUpdate);
-                        entryEntity.CurrentValues.SetValues(modifiedPizza);
+                    _myDb.SaveChanges();
 
-                        db.SaveChanges();
-
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        var errorModel = new ErrorViewModel
-                        {
-                            ErrorMessage = $"The pizza you are searching has not been found",
-                            RequestId = HttpContext.TraceIdentifier
-                        };
-                        return View("Error", errorModel);
-                    }
-
+                    return RedirectToAction("Index");
                 }
+                else
+                {
+                    var errorModel = new ErrorViewModel
+                    {
+                        ErrorMessage = $"The pizza you are searching has not been found",
+                        RequestId = HttpContext.TraceIdentifier
+                    };
+                    return View("Error", errorModel);
+                }
+
+                
 
             }
             catch (Exception ex)
@@ -236,17 +234,13 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         public ActionResult Delete(int id)
         {
             try
-            {
-
-                using (PizzeriaContext db = new PizzeriaContext())
-                {
-
-                    Pizza? PizzaToDelete = db.Pizzas.Where(Pizza => Pizza.Id == id).FirstOrDefault();
+            {              
+                    Pizza? PizzaToDelete = _myDb.Pizzas.Where(Pizza => Pizza.Id == id).FirstOrDefault();
 
                     if (PizzaToDelete != null)
                     {
-                        db.Pizzas.Remove(PizzaToDelete);
-                        db.SaveChanges();
+                        _myDb.Pizzas.Remove(PizzaToDelete);
+                        _myDb.SaveChanges();
 
                         return RedirectToAction("Index");
                     }
@@ -258,10 +252,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                             RequestId = HttpContext.TraceIdentifier
                         };
                         return View("Error", errorModel);
-                    }
-
-                }
-
+                    }           
             }
             catch (Exception ex)
             {

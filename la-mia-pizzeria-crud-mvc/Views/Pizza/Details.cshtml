@@ -8,13 +8,18 @@ ViewData["Title"] = Model.Name;
 
 <div class="__pizza-details-ctn container d-flex flex-column align-items-center">
     <h1 class="card-title">@Model.Name</h1>
-    <div class="__pizza-details-card card d-flex flex-column align-items-center">
+    <div class="__pizza-details-card card d-flex flex-column align-items-center pb-3">
         <img class="card-img-top" src='@Model.ImageUrl' alt="Pizza image">
-        <div class="card-body text-center">
-            
+        <div class="card-body text-center">            
             <p class="card-text">@Model.Description</p>
-            <p class="card-text">Price: @Model.Price €</p>            
+            <p class="card-text">Price: @Model.Price €</p>             
         </div>  
+        <div class="__detail-btn-ctn d-flex gap-2">
+            <a href="@Url.Action("Update", "Pizza", new { name = Model.Name })" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></a>
+            
+            @await Html.PartialAsync("DeleteFormPartial")            
+
+        </div>
     </div>
     <div class="__btn-details-ctn d-flex gap-1 py-2">
         <div class="">
