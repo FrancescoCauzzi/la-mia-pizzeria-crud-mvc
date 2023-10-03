@@ -1,0 +1,5 @@
+03-10-2023 17:24:55 LOG: User has reached the page Pizza > Index
+03-10-2023 17:26:22 LOG: User has reached the page Pizza > Index
+03-10-2023 17:26:26 LOG: User has reached the page Pizza Tuna And Onions > Details
+03-10-2023 17:26:39 LOG: User has reached the page Pizza > Index
+03-10-2023 17:26:42 LOG: User has reached the page Pizza Ham And Mushrooms > Details

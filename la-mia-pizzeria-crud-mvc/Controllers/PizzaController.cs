@@ -5,26 +5,37 @@ using la_mia_pizzeria_crud_mvc.Database;
 using Microsoft.Docs.Samples;
 using System.Globalization;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using la_mia_pizzeria_crud_mvc.CustomLoggers;
 
 namespace la_mia_pizzeria_crud_mvc.Controllers
 {
     public class PizzaController : Controller
     {
+        // Dependency Injection
+        private ICustomLogger _myLogger;
+
+        public PizzaController(ICustomLogger myLogger)
+        {
+            _myLogger = myLogger;
+        }
+
+
+
         // GET: PizzaController
         public ActionResult Index()
         {
-            try {
+            try
+            {
+                _myLogger.WriteLog("User has reached the page Pizza > Index");
                 using (PizzeriaContext db = new PizzeriaContext())
                 {
-                    List<Pizza> pizzas = db.Pizzas.ToList<Pizza>();                    
-                     
+                    List<Pizza> pizzas = db.Pizzas.ToList<Pizza>();
+
                     return View("Index", pizzas);
-                    
-
                 }
-
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 // Log the exception details here
                 var errorModel = new ErrorViewModel
                 {
@@ -34,16 +45,18 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 return View("Error", errorModel);
 
             }
-            
+
         }
 
         // GET: PizzaController/Details/5
-        
-        
+
+
         public ActionResult Details(string name)
         {
             try
-            {                
+            {
+                _myLogger.WriteLog($"User has reached the page Pizza {name} > Details");
+
                 using (PizzeriaContext db = new PizzeriaContext())
                 {
                     Pizza? foundedPizza = db.Pizzas.Where(pizza => pizza.Name == name).FirstOrDefault();
@@ -92,7 +105,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         {
             try
             {
-               
+
                 if (string.IsNullOrEmpty(data.ImageUrl))
                 {
                     data.ImageUrl = "/images/default_pizza.png";
@@ -107,8 +120,8 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                     Pizza newPizza = new Pizza();
                     newPizza.Name = data.Name;
                     newPizza.Description = data.Description;
-                    
-                    newPizza.Price = data.Price;                    
+
+                    newPizza.Price = data.Price;
                     newPizza.ImageUrl = data.ImageUrl;
 
                     db.Pizzas.Add(newPizza);
@@ -123,19 +136,20 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 var errorModel = new ErrorViewModel
                 {
                     ErrorMessage = $"An error occurred while inserting the new pizza in the database: {ex.InnerException}",
-                    RequestId = HttpContext.TraceIdentifier 
+                    RequestId = HttpContext.TraceIdentifier
                 };
                 return View("Error", errorModel);
 
             }
-            
-        }       
+
+        }
 
 
         // GET: PizzaController/Update/5
         public ActionResult Update(string name)
         {
-            try {
+            try
+            {
                 using (PizzeriaContext db = new PizzeriaContext())
                 {
                     Pizza? pizzaToEdit = db.Pizzas.Where(Pizza => Pizza.Name == name).FirstOrDefault();
@@ -156,7 +170,8 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
 
                 }
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 var errorModel = new ErrorViewModel
                 {
                     ErrorMessage = $"An error occurred: {ex.Message}",
@@ -164,7 +179,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 };
                 return View("Error", errorModel);
             }
-            
+
         }
 
         // POST: PizzaController/Update/5
@@ -174,12 +189,12 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         {
             try
             {
-                
+
                 if (!ModelState.IsValid)
                 {
-                return View("Update", modifiedPizza);
+                    return View("Update", modifiedPizza);
                 }
-                using(PizzeriaContext db = new PizzeriaContext())
+                using (PizzeriaContext db = new PizzeriaContext())
                 {
                     Pizza? PizzaToUpdate = db.Pizzas.Find(id);
 
@@ -203,9 +218,9 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                     }
 
                 }
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 var errorModel = new ErrorViewModel
                 {
@@ -220,7 +235,8 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         // GET: PizzaController/Delete/5
         public ActionResult Delete(int id)
         {
-            try {
+            try
+            {
 
                 using (PizzeriaContext db = new PizzeriaContext())
                 {
@@ -247,7 +263,8 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 }
 
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 var errorModel = new ErrorViewModel
                 {
                     ErrorMessage = $"An error occurred: {ex.Message}",
