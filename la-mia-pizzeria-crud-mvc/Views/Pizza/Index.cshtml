@@ -26,6 +26,7 @@
                         <div class="__buttons-card-ctn d-flex gap-1 justify-content-between">
                             <a href="@Url.Action("Details", "Pizza", new { name = pizza.Name })" class="btn btn-primary">See details</a>
                             <a href="@Url.Action("Update", "Pizza", new { name = pizza.Name })" class="btn btn-primary">Edit this pizza</a>
+
                             <form asp-controller="Pizza" asp-action="Delete" asp-route-id="@pizza.Id" method="post">
                                 @Html.AntiForgeryToken()
                                 

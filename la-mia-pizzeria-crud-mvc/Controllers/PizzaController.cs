@@ -220,10 +220,46 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         // GET: PizzaController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try {
+
+                using (PizzeriaContext db = new PizzeriaContext())
+                {
+
+                    Pizza? PizzaToDelete = db.Pizzas.Where(Pizza => Pizza.Id == id).FirstOrDefault();
+
+                    if (PizzaToDelete != null)
+                    {
+                        db.Pizzas.Remove(PizzaToDelete);
+                        db.SaveChanges();
+
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        var errorModel = new ErrorViewModel
+                        {
+                            ErrorMessage = $"The pizza you are trying to delete is not present in the database",
+                            RequestId = HttpContext.TraceIdentifier
+                        };
+                        return View("Error", errorModel);
+                    }
+
+                }
+
+            }
+            catch(Exception ex){
+                var errorModel = new ErrorViewModel
+                {
+                    ErrorMessage = $"An error occurred: {ex.Message}",
+                    RequestId = HttpContext.TraceIdentifier
+                };
+                return View("Error", errorModel);
+
+            }
         }
 
         // POST: PizzaController/Delete/5
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
@@ -237,6 +273,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 return View();
             }
         }
+        */
 
 
     }
