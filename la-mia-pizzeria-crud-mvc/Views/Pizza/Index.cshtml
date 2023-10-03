@@ -23,7 +23,24 @@
                         <h5 class="card-title">@pizza.Name</h5>
                         <p class="card-text">@pizza.Description</p>
                         <p class="card-text">@pizza.Price €</p>
-                        <a href="@Url.Action("Details", "Pizza", new { name = pizza.Name })" class="btn btn-primary">See details</a>
+                        <div class="__buttons-card-ctn d-flex gap-1 justify-content-between">
+                            <a href="@Url.Action("Details", "Pizza", new { name = pizza.Name })" class="btn btn-primary">See details</a>
+                            <a href="@Url.Action("Update", "Pizza", new { name = pizza.Name })" class="btn btn-primary">Edit this pizza</a>
+                            <form asp-controller="Pizza" asp-action="Delete" asp-route-id="@pizza.Id" method="post">
+                                @Html.AntiForgeryToken()
+                                
+                                    <button type="submit" class="__delete-btn btn btn-danger p-2 btn-sm">
+                                    <i class="fas fa-trash-can">
+                                    </i>
+                                    </button>
+                                
+                                
+                            </form>
+
+
+
+
+                        </div>
                     </div>                                   
                 </div>
             }
@@ -37,6 +54,7 @@
 
         </div>
     }
+    
     
     <div class="__pizza-index-go-back-button">
         <a href="@Url.Action("Index","Home")" class="btn btn-primary">Go back to the homepage</a>

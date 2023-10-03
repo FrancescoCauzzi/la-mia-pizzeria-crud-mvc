@@ -14,9 +14,6 @@ namespace la_mia_pizzeria_crud_mvc
 
             var app = builder.Build();
 
-            
-
-            
             var defaultDateCulture = "en-US";
             var ci = new CultureInfo(defaultDateCulture);
             ci.NumberFormat.NumberDecimalSeparator = ".";
@@ -36,8 +33,6 @@ namespace la_mia_pizzeria_crud_mvc
             }
             });
             
-
-
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -53,7 +48,8 @@ namespace la_mia_pizzeria_crud_mvc
 
             app.UseAuthorization();
 
-            app.MapControllerRoute(name: "PizzasIndex",
+            app.MapControllerRoute(
+                name: "PizzasIndex",
                 pattern: "Our-Pizzas",
                 defaults: new { controller = "Pizza", action = "Index" });
 
@@ -61,6 +57,13 @@ namespace la_mia_pizzeria_crud_mvc
                 name: "PizzaDetails",
                 pattern: "Our-Pizzas/{*name}",
                 defaults: new { controller = "Pizza", action = "Details" });
+
+            
+            app.MapControllerRoute(
+                name: "PizzaEdit",
+                pattern: "Edit/{*name}",
+                defaults: new { controller = "Pizza", action = "Update" });
+            
             /*
             app.MapControllerRoute(
                 name: "PizzaCreate",

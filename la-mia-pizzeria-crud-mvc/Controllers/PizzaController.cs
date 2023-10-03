@@ -4,6 +4,7 @@ using la_mia_pizzeria_crud_mvc.Models;
 using la_mia_pizzeria_crud_mvc.Database;
 using Microsoft.Docs.Samples;
 using System.Globalization;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace la_mia_pizzeria_crud_mvc.Controllers
 {
@@ -131,24 +132,88 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         }       
 
 
-        // GET: PizzaController/Edit/5
-        public ActionResult Edit(int id)
+        // GET: PizzaController/Update/5
+        public ActionResult Update(string name)
         {
-            return View();
+            try {
+                using (PizzeriaContext db = new PizzeriaContext())
+                {
+                    Pizza? pizzaToEdit = db.Pizzas.Where(Pizza => Pizza.Name == name).FirstOrDefault();
+
+                    if (pizzaToEdit == null)
+                    {
+                        var errorModel = new ErrorViewModel
+                        {
+                            ErrorMessage = $"The pizza you are searching has not been found",
+                            RequestId = HttpContext.TraceIdentifier
+                        };
+                        return View("Error", errorModel);
+                    }
+                    else
+                    {
+                        return View("Update", pizzaToEdit);
+                    }
+
+                }
+            }
+            catch(Exception ex) {
+                var errorModel = new ErrorViewModel
+                {
+                    ErrorMessage = $"An error occurred: {ex.Message}",
+                    RequestId = HttpContext.TraceIdentifier
+                };
+                return View("Error", errorModel);
+            }
+            
         }
 
-        // POST: PizzaController/Edit/5
+        // POST: PizzaController/Update/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Update(int id, Pizza modifiedPizza)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                
+                if (!ModelState.IsValid)
+                {
+                return View("Update", modifiedPizza);
+                }
+                using(PizzeriaContext db = new PizzeriaContext())
+                {
+                    Pizza? PizzaToUpdate = db.Pizzas.Find(id);
+
+                    if (PizzaToUpdate != null)
+                    {
+                        EntityEntry<Pizza> entryEntity = db.Entry(PizzaToUpdate);
+                        entryEntity.CurrentValues.SetValues(modifiedPizza);
+
+                        db.SaveChanges();
+
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        var errorModel = new ErrorViewModel
+                        {
+                            ErrorMessage = $"The pizza you are searching has not been found",
+                            RequestId = HttpContext.TraceIdentifier
+                        };
+                        return View("Error", errorModel);
+                    }
+
+                }
+                
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                var errorModel = new ErrorViewModel
+                {
+                    ErrorMessage = $"An error occurred: {ex.Message}",
+                    RequestId = HttpContext.TraceIdentifier
+                };
+                return View("Error", errorModel);
+
             }
         }
 
