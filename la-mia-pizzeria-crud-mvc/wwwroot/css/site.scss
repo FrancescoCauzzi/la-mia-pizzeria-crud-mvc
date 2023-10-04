@@ -31,22 +31,26 @@ html {
         }
 
         .__main-container {
-            padding-top: 80px;
+            padding-top: 63px;
             padding-bottom: 40px;
-            background-color: #862b2b;
             min-height: 93vh;
+            background-color: #862b2b;
 
-            .__home-imgs-ctn {
-                gap: 15px;
+            .__home-ctn {
 
-                .__home-img {
-                    min-width: 350px;
-                    width: calc(64% / 2 * 1 - (15px / 2 * 1));
+                .__home-imgs-ctn {
+                    gap: 15px;
 
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
+                    .__home-img {
+                        min-width: 350px;
+                        height:450px;
+                        width: calc(64% / 2 * 1 - (15px / 2 * 1));
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
                     }
                 }
             }
@@ -81,8 +85,8 @@ html {
 
                     .__detail-btn-ctn {
                         position: absolute;
-                        top: 4px;
-                        right: 4px;                                             
+                        top: 2px;
+                        right: 4px;
                     }
                 }
 

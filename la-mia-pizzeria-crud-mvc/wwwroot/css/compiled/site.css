@@ -26,19 +26,20 @@ html body .__header .__navbar-toggler-icon {
   background-color: gray;
 }
 html body .__main-container {
-  padding-top: 80px;
+  padding-top: 63px;
   padding-bottom: 40px;
-  background-color: #862b2b;
   min-height: 93vh;
+  background-color: #862b2b;
 }
-html body .__main-container .__home-imgs-ctn {
+html body .__main-container .__home-ctn .__home-imgs-ctn {
   gap: 15px;
 }
-html body .__main-container .__home-imgs-ctn .__home-img {
+html body .__main-container .__home-ctn .__home-imgs-ctn .__home-img {
   min-width: 350px;
+  height: 450px;
   width: calc(32% - 7.5px);
 }
-html body .__main-container .__home-imgs-ctn .__home-img img {
+html body .__main-container .__home-ctn .__home-imgs-ctn .__home-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -66,7 +67,7 @@ html body .__main-container .__pizza-details-ctn .__pizza-details-card {
 }
 html body .__main-container .__pizza-details-ctn .__pizza-details-card .__detail-btn-ctn {
   position: absolute;
-  top: 4px;
+  top: 2px;
   right: 4px;
 }
 html body .__main-container .__pizza-details-ctn .__btn-details-ctn {
