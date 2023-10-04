@@ -31,7 +31,8 @@ namespace la_mia_pizzeria_crud_mvc.Models.DataBaseModels
         // Custom Validation
         [UrlOrFilePath]
         [MaxLength(500)]
-        public string ImageUrl { get; set; } = "/images/default_pizza.png";
+        public string? ImageUrl { get; set; }
+        
 
         // Foreign Key, 1 pizza can have only one category (PizzaCategoryId)
         [ForeignKey("PizzaCategory")]

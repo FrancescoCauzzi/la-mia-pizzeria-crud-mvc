@@ -19,7 +19,9 @@
             {
                 <div class="card d-flex flex-column __pizza-card">
 
-                    <img class="card-img-top" src='@(!string.IsNullOrEmpty(pizza.ImageUrl) ? pizza.ImageUrl : "/images/default_pizza.png")' alt="Pizza image">
+                    @*src='@(!string.IsNullOrEmpty(pizza.ImageUrl) ? pizza.ImageUrl : "/images/default_pizza.png")'*@
+
+                    <img class="card-img-top" src="@pizza.ImageUrl" alt="Pizza image">
                     <div class="card-body">
                         <h5 class="card-title">@pizza.Name</h5>
                         <p class="card-text">@pizza.Description</p>

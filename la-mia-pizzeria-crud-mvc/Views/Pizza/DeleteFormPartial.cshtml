@@ -2,7 +2,7 @@
 <form asp-controller="Pizza" asp-action="Delete" asp-route-id="@Model.Id" method="post">
     @Html.AntiForgeryToken()
 
-    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop-@Model.Id">
+    <button type="button" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop-@Model.Id">
         <i class="fas fa-trash-can">
         </i>
     </button>

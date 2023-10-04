@@ -2,38 +2,48 @@
 @{
     ViewData["Title"] = "Insert New Pizza";
 
-    @model Pizza
+    @model PizzaFormModel
 
 }
 
 <div class="container">
     <div class="__post-form-ctn d-flex flex-column">
-        <h1>Edit @Model.Name</h1>
+        <h1>Edit @Model.Pizza.Name</h1>
 
-        <form asp-controller="Pizza" asp-action="Update" asp-route-id="@Model.Id" method="post">
+        <form asp-controller="Pizza" asp-action="Update" asp-route-id="@Model.Pizza.Id" method="post">
             @Html.AntiForgeryToken()
             <div class="mb-3">
 
                 <label for="Name"><strong>Name:</strong></label>
-                <input asp-for="Name" class="d-block w-100" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <input asp-for="Pizza.Name" class="d-block w-100" />
+                <span asp-validation-for="Pizza.Name" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label for="Description"><strong>Description:</strong></label>
-                <textarea asp-for="Description" rows="8" class="d-block w-100"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <textarea asp-for="Pizza.Description" rows="8" class="d-block w-100"></textarea>
+                <span asp-validation-for="Pizza.Description" class="text-danger"></span>
 
             </div>
             <div class="mb-3">
 
                 <label for="Price"><strong>Price:</strong></label>
-                <input type="text" asp-for="Price" oninput="this.value = this.value.replace(/,/g, '.')" class="d-block w-100" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                <input type="text" asp-for="Pizza.Price" oninput="this.value = this.value.replace(/,/g, '.')" class="d-block w-100" />
+                <span asp-validation-for="Pizza.Price" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <strong>Pizza Category:</strong>
+                <select asp-for="Pizza.PizzaCategoryId" rows="10" class="d-block w-100">
+                    <option value="">Select the pizza category</option>
+                    @foreach (PizzaCategory pizzaCategory in Model.PizzaCategories)
+                    {
+                        <option value="@pizzaCategory.Id">@pizzaCategory.Name</option>
+                    }
+                </select>
             </div>
             <div class="mb-3">
                 <label for="ImageUrl"><strong>Image Url:</strong></label>
-                <input asp-for="ImageUrl" class="d-block w-100" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                <input asp-for="Pizza.ImageUrl" class="d-block w-100" />
+                <span asp-validation-for="Pizza.ImageUrl" class="text-danger"></span>
             </div>
             <div class="text-end">
                 <input type="submit" class="btn btn-small btn-info" value="Update">

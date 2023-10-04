@@ -4,6 +4,7 @@ using la_mia_pizzeria_crud_mvc.Models;
 using la_mia_pizzeria_crud_mvc.Database;
 using Microsoft.Docs.Samples;
 using System.Globalization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using la_mia_pizzeria_crud_mvc.CustomLoggers;
 using la_mia_pizzeria_crud_mvc.Models.DataBaseModels;
@@ -62,22 +63,21 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 _myLogger.WriteLog($"User has reached the page Pizza {name} > Details");
 
                 
-                Pizza? foundedPizza = _myDb.Pizzas.Where(pizza => pizza.Name == name).FirstOrDefault();
+                Pizza? foundedPizza = _myDb.Pizzas.Where(pizza => pizza.Name == name).Include(pizza => pizza.PizzaCategory).FirstOrDefault();
 
                 if (foundedPizza == null)
                 {
-
                     //return NotFound($"The item {name} was not found!");
                     var errorModel = new ErrorViewModel
                     {
                         ErrorMessage = $"The item '{name}' was not found!",
-                        RequestId = HttpContext.TraceIdentifier // This is optional, just if you want to include the request ID
+                        RequestId = HttpContext.TraceIdentifier 
                     };
                     return View("Error", errorModel);
                 }
                 else
                 {
-                    return View(foundedPizza);
+                    return View("Details",foundedPizza);
                 }
                 
             }
@@ -99,33 +99,38 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View("Create");
+            List<PizzaCategory> pizzaCategories = _myDb.PizzaCategories.ToList();
+
+            PizzaFormModel formModel = new PizzaFormModel { Pizza = new Pizza(), PizzaCategories = pizzaCategories };
+            return View("Create", formModel);
         }
 
         // POST: PizzaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Pizza data)
+        public ActionResult Create(PizzaFormModel data)
         {
             try
             {
-
-                if (string.IsNullOrEmpty(data.ImageUrl))
+                if (string.IsNullOrEmpty(data.Pizza.ImageUrl))
                 {
-                    data.ImageUrl = "/images/default_pizza.png";
-                    ModelState.Remove("ImageUrl");
+                    data.Pizza.ImageUrl = "/images/default_pizza.png";
+                    //ModelState.Remove("ImageUrl");
                 }
                 if (!ModelState.IsValid)
                 {
+                    List<PizzaCategory> pizzaCategories = _myDb.PizzaCategories.ToList();
+                    data.PizzaCategories = pizzaCategories;
                     return View("Create", data);
                 }
                 
                 Pizza newPizza = new Pizza();
-                newPizza.Name = data.Name;
-                newPizza.Description = data.Description;
+                newPizza.Name = data.Pizza.Name;
+                newPizza.Description = data.Pizza.Description;
 
-                newPizza.Price = data.Price;
-                newPizza.ImageUrl = data.ImageUrl;
+                newPizza.Price = data.Pizza.Price;
+                newPizza.ImageUrl = data.Pizza.ImageUrl;
+                newPizza.PizzaCategoryId = data.Pizza.PizzaCategoryId;
 
                 _myDb.Pizzas.Add(newPizza);
                 _myDb.SaveChanges();
@@ -136,10 +141,12 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
             }
             catch (Exception ex)
             {
+                string? innerException = ex.InnerException.ToString();
                 var errorModel = new ErrorViewModel
                 {
                     //ErrorMessage = $"An error occurred while inserting the new pizza in the database: {ex.InnerException}",
-                    ErrorMessage = ex.Message,
+
+                    ErrorMessage = $"{ex.Message}: {innerException}",
                     RequestId = HttpContext.TraceIdentifier
                 };
                 return View("Error", errorModel);
@@ -150,6 +157,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
 
 
         // GET: PizzaController/Update/5
+        [HttpGet]
         public ActionResult Update(string name)
         {
             try
@@ -168,7 +176,10 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 }
                 else
                 {
-                    return View("Update", pizzaToEdit);
+                    List<PizzaCategory> pizzaCategories = _myDb.PizzaCategories.ToList();
+
+                    PizzaFormModel formModel = new PizzaFormModel { Pizza = pizzaToEdit, PizzaCategories = pizzaCategories };
+                    return View("Update", formModel);
                 }
 
                
@@ -189,22 +200,34 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         // POST: PizzaController/Update/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update(int id, Pizza modifiedPizza)
+        public ActionResult Update(int id, PizzaFormModel data)
         {
             try
             {
 
                 if (!ModelState.IsValid)
                 {
-                    return View("Update", modifiedPizza);
+                    List<PizzaCategory> pizzaCategories = _myDb.PizzaCategories.ToList();
+                    data.PizzaCategories = pizzaCategories;
+                    return View("Update", data);
                 }
                 
                 Pizza? PizzaToUpdate = _myDb.Pizzas.Find(id);
 
                 if (PizzaToUpdate != null)
                 {
+                    // The code below threw an error
+                    /*
                     EntityEntry<Pizza> entryEntity = _myDb.Entry(PizzaToUpdate);
-                    entryEntity.CurrentValues.SetValues(modifiedPizza);
+                    entryEntity.CurrentValues.SetValues(data.Pizza);
+                    */
+                // this code worked
+                /**/
+                    PizzaToUpdate.Name = data.Pizza.Name;
+                    PizzaToUpdate.Description = data.Pizza.Description;
+                    PizzaToUpdate.Price = data.Pizza.Price;
+                    PizzaToUpdate.ImageUrl = data.Pizza.ImageUrl;
+                    PizzaToUpdate.PizzaCategoryId = data.Pizza.PizzaCategoryId;
 
                     _myDb.SaveChanges();
 
@@ -218,10 +241,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                         RequestId = HttpContext.TraceIdentifier
                     };
                     return View("Error", errorModel);
-                }
-
-                
-
+                }             
             }
             catch (Exception ex)
             {
@@ -241,30 +261,30 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         {
             try
             {              
-                    Pizza? PizzaToDelete = _myDb.Pizzas.Where(Pizza => Pizza.Id == id).FirstOrDefault();
+                Pizza? PizzaToDelete = _myDb.Pizzas.Where(Pizza => Pizza.Id == id).FirstOrDefault();
 
-                    if (PizzaToDelete != null)
-                    {
-                        _myDb.Pizzas.Remove(PizzaToDelete);
-                        _myDb.SaveChanges();
+                if (PizzaToDelete != null)
+                {
+                    _myDb.Pizzas.Remove(PizzaToDelete);
+                    _myDb.SaveChanges();
 
-                        return RedirectToAction("Index");
-                    }
-                    else
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    var errorModel = new ErrorViewModel
                     {
-                        var errorModel = new ErrorViewModel
-                        {
-                            ErrorMessage = $"The pizza you are trying to delete is not present in the database",
-                            RequestId = HttpContext.TraceIdentifier
-                        };
-                        return View("Error", errorModel);
-                    }           
+                        ErrorMessage = $"The pizza you are trying to delete is not present in the database",
+                        RequestId = HttpContext.TraceIdentifier
+                    };
+                    return View("Error", errorModel);
+                }           
             }
             catch (Exception ex)
             {
                 var errorModel = new ErrorViewModel
                 {
-                    //ErrorMessage = $"An error occurred: {ex.Message}",
+                    
                     ErrorMessage= ex.Message,
                     RequestId = HttpContext.TraceIdentifier
                 };
