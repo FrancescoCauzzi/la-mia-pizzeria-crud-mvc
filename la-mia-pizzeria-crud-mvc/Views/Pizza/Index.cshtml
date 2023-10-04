@@ -1,3 +1,4 @@
+@using la_mia_pizzeria_crud_mvc.Models.DataBaseModels
 @{
     ViewData["Title"] = "Our Pizzas";
 }
@@ -9,7 +10,7 @@
     <h1 class="display-4">These are our pizzas</h1>
 
     @* nella slide sintassi diversa da questa sotto  *@
-    @model List<la_mia_pizzeria_crud_mvc.Models.Pizza>
+    @model List<Pizza>
 
     @if (Model.Count != 0)
     {
@@ -52,3 +53,5 @@
     </div>
     
 </div>
+
+

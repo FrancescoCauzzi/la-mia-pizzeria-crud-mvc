@@ -47,3 +47,16 @@
 03-10-2023 18:11:35 LOG: User has reached the page Pizza > Index
 03-10-2023 18:11:55 LOG: User has reached the page Pizza > Index
 03-10-2023 18:11:58 LOG: User has reached the page Pizza > Index
+04-10-2023 09:19:22 LOG: User has reached the page Pizza > Index
+04-10-2023 09:19:27 LOG: User has reached the page Pizza Tuna And Onions > Details
+04-10-2023 09:19:42 LOG: User has reached the page Pizza > Index
+04-10-2023 09:19:47 LOG: User has reached the page Pizza > Index
+04-10-2023 09:19:50 LOG: User has reached the page Pizza > Index
+04-10-2023 09:19:54 LOG: User has reached the page Pizza > Index
+04-10-2023 09:20:01 LOG: User has reached the page Pizza > Index
+04-10-2023 09:20:05 LOG: User has reached the page Pizza > Index
+04-10-2023 09:20:12 LOG: User has reached the page Pizza > Index
+04-10-2023 09:25:57 LOG: User has reached the page Pizza > Index
+04-10-2023 09:28:54 LOG: User has reached the page Pizza > Index
+04-10-2023 09:29:00 LOG: User has reached the page Pizza > Index
+04-10-2023 09:36:55 LOG: User has reached the page Pizza > Index

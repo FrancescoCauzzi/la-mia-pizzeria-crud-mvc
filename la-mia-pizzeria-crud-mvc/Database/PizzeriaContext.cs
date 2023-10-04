@@ -1,4 +1,4 @@
-﻿using la_mia_pizzeria_crud_mvc.Models;
+﻿using la_mia_pizzeria_crud_mvc.Models.DataBaseModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace la_mia_pizzeria_crud_mvc.Database
@@ -6,6 +6,8 @@ namespace la_mia_pizzeria_crud_mvc.Database
     public class PizzeriaContext : DbContext
     {
         public DbSet<Pizza> Pizzas { get; set; }
+
+        public DbSet<PizzaCategory> PizzaCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

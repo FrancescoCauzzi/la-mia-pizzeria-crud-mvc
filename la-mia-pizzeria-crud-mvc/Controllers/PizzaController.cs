@@ -6,6 +6,7 @@ using Microsoft.Docs.Samples;
 using System.Globalization;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using la_mia_pizzeria_crud_mvc.CustomLoggers;
+using la_mia_pizzeria_crud_mvc.Models.DataBaseModels;
 
 namespace la_mia_pizzeria_crud_mvc.Controllers
 {
@@ -41,7 +42,8 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 // Log the exception details here
                 var errorModel = new ErrorViewModel
                 {
-                    ErrorMessage = "An error occurred while retrieving the data from the database.",
+                    //ErrorMessage = "An error occurred while retrieving the data from the database.",
+                    ErrorMessage = ex.Message,
                     RequestId = HttpContext.TraceIdentifier // This is optional, just if you want to include the request ID
                 };
                 return View("Error", errorModel);
@@ -83,7 +85,8 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
             {
                 var errorModel = new ErrorViewModel
                 {
-                    ErrorMessage = "An error occurred while retrieving the pizza details.",
+                    //ErrorMessage = "An error occurred while retrieving the pizza details.",
+                    ErrorMessage= ex.Message,
                     RequestId = HttpContext.TraceIdentifier // This is optional, just if you want to include the request ID
                 };
                 return View("Error", errorModel);
@@ -135,7 +138,8 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
             {
                 var errorModel = new ErrorViewModel
                 {
-                    ErrorMessage = $"An error occurred while inserting the new pizza in the database: {ex.InnerException}",
+                    //ErrorMessage = $"An error occurred while inserting the new pizza in the database: {ex.InnerException}",
+                    ErrorMessage = ex.Message,
                     RequestId = HttpContext.TraceIdentifier
                 };
                 return View("Error", errorModel);
@@ -173,7 +177,8 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
             {
                 var errorModel = new ErrorViewModel
                 {
-                    ErrorMessage = $"An error occurred: {ex.Message}",
+                    //ErrorMessage = $"An error occurred: {ex.Message}",
+                    ErrorMessage= ex.Message,
                     RequestId = HttpContext.TraceIdentifier
                 };
                 return View("Error", errorModel);
@@ -222,7 +227,8 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
             {
                 var errorModel = new ErrorViewModel
                 {
-                    ErrorMessage = $"An error occurred: {ex.Message}",
+                    //ErrorMessage = $"An error occurred: {ex.Message}",
+                    ErrorMessage = ex.Message,
                     RequestId = HttpContext.TraceIdentifier
                 };
                 return View("Error", errorModel);
@@ -258,7 +264,8 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
             {
                 var errorModel = new ErrorViewModel
                 {
-                    ErrorMessage = $"An error occurred: {ex.Message}",
+                    //ErrorMessage = $"An error occurred: {ex.Message}",
+                    ErrorMessage= ex.Message,
                     RequestId = HttpContext.TraceIdentifier
                 };
                 return View("Error", errorModel);

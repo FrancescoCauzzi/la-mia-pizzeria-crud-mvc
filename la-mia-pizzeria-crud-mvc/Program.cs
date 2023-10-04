@@ -16,7 +16,7 @@ namespace la_mia_pizzeria_crud_mvc
             
             // Dependency Injection
             builder.Services.AddScoped<ICustomLogger, CustomFileLogger>();
-
+            // Dependency Injection
             builder.Services.AddScoped<PizzeriaContext, PizzeriaContext>();
 
             var app = builder.Build();
