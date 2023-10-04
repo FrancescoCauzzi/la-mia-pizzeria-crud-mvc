@@ -1,4 +1,3 @@
-
 html {
   font-size: 14px;
   position: relative;
@@ -60,6 +59,18 @@ html body .__main-container .__pizza-index .__pizza-container .__pizza-card img 
 }
 html body .__main-container .__pizza-index .__pizza-index-go-back-button {
   padding-top: 10px;
+}
+html body .__main-container .__pizza-details-ctn .__pizza-details-card {
+  min-width: 250px;
+  position: relative;
+}
+html body .__main-container .__pizza-details-ctn .__pizza-details-card .__detail-btn-ctn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+html body .__main-container .__pizza-details-ctn .__btn-details-ctn {
+  min-width: 250px;
 }
 html body .__footer {
   position: fixed;
