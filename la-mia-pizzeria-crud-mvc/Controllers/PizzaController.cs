@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using la_mia_pizzeria_crud_mvc.CustomLoggers;
 using la_mia_pizzeria_crud_mvc.Models.DataBaseModels;
+using Azure;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace la_mia_pizzeria_crud_mvc.Controllers
 {
@@ -18,6 +20,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
 
         private PizzeriaContext _myDb;
 
+        // Dependency Injection in the constructor
         public PizzaController(ICustomLogger myLogger, PizzeriaContext myDb)
         {
             _myLogger = myLogger;
@@ -32,11 +35,11 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
             try
             {
                 _myLogger.WriteLog("User has reached the page Pizza > Index");
-                
+
                 List<Pizza> pizzas = _myDb.Pizzas.ToList<Pizza>();
 
                 return View("Index", pizzas);
-                
+
             }
             catch (Exception ex)
             {
@@ -62,31 +65,31 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
             {
                 _myLogger.WriteLog($"User has reached the page Pizza {name} > Details");
 
-                
-                Pizza? foundedPizza = _myDb.Pizzas.Where(pizza => pizza.Name == name).Include(pizza => pizza.PizzaCategory).FirstOrDefault();
+
+                Pizza? foundedPizza = _myDb.Pizzas.Where(pizza => pizza.Name == name).Include(pizza => pizza.PizzaCategory).Include(pizza => pizza.Ingredients).FirstOrDefault();
 
                 if (foundedPizza == null)
                 {
-                    //return NotFound($"The item {name} was not found!");
+
                     var errorModel = new ErrorViewModel
                     {
                         ErrorMessage = $"The item '{name}' was not found!",
-                        RequestId = HttpContext.TraceIdentifier 
+                        RequestId = HttpContext.TraceIdentifier
                     };
                     return View("Error", errorModel);
                 }
                 else
                 {
-                    return View("Details",foundedPizza);
+                    return View("Details", foundedPizza);
                 }
-                
+
             }
             catch (Exception ex)
             {
                 var errorModel = new ErrorViewModel
                 {
                     //ErrorMessage = "An error occurred while retrieving the pizza details.",
-                    ErrorMessage= ex.Message,
+                    ErrorMessage = ex.Message,
                     RequestId = HttpContext.TraceIdentifier // This is optional, just if you want to include the request ID
                 };
                 return View("Error", errorModel);
@@ -101,7 +104,20 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         {
             List<PizzaCategory> pizzaCategories = _myDb.PizzaCategories.ToList();
 
-            PizzaFormModel formModel = new PizzaFormModel { Pizza = new Pizza(), PizzaCategories = pizzaCategories };
+            List<SelectListItem> allIngredientsSelectList = new List<SelectListItem>();
+            List<Ingredient> databaseAllIngredients = _myDb.Ingredients.ToList();
+
+            foreach (Ingredient ingredient in databaseAllIngredients)
+            {
+                allIngredientsSelectList.Add(
+                    new SelectListItem
+                    {
+                        Text = ingredient.Name,
+                        Value = ingredient.Id.ToString()
+                    });
+            }
+
+            PizzaFormModel formModel = new PizzaFormModel { Pizza = new Pizza(), PizzaCategories = pizzaCategories, Ingredients = allIngredientsSelectList };
             return View("Create", formModel);
         }
 
@@ -121,22 +137,64 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 {
                     List<PizzaCategory> pizzaCategories = _myDb.PizzaCategories.ToList();
                     data.PizzaCategories = pizzaCategories;
+                    // now I initialize a new emptu list
+                    List<SelectListItem> allIngredientsSelectList = new List<SelectListItem>();
+                    // and I fill it with all the ingredients because I want to show them in the form if the form is not filled well so the user can input them again
+
+                    List<Ingredient> databaseAllIngredients = _myDb.Ingredients.ToList();
+
+                    foreach (Ingredient ingredient in databaseAllIngredients)
+                    {
+                        allIngredientsSelectList.Add(
+                            new SelectListItem
+                            {
+                                Text = ingredient.Name,
+                                Value = ingredient.Id.ToString()
+                            });
+                    }
+
+                    data.Ingredients = allIngredientsSelectList;
+
                     return View("Create", data);
                 }
-                
-                Pizza newPizza = new Pizza();
-                newPizza.Name = data.Pizza.Name;
-                newPizza.Description = data.Pizza.Description;
+                // here if the form is filled well I can continue the process and eventually add the pizza to the database
+                data.Pizza.Ingredients = new List<Ingredient>();
 
-                newPizza.Price = data.Pizza.Price;
-                newPizza.ImageUrl = data.Pizza.ImageUrl;
-                newPizza.PizzaCategoryId = data.Pizza.PizzaCategoryId;
+                //if I have any ingredient selected
+                if (data.SelectedIngredientsId != null)
+                {
+                    foreach (string IngredientSelectedId in data.SelectedIngredientsId)
+                    {
+                        // down here I need to transform the string into an integer because the database stores the id as an integer but the form send it as a string
+                        int intIngredientSelectedId = int.Parse(IngredientSelectedId);
+                        // down here I get the ingredient from the database matching the id of the selected ingredient
+                        Ingredient? ingredientInDb = _myDb.Ingredients.Where(Ingredient => Ingredient.Id == intIngredientSelectedId).FirstOrDefault();
+                        // after a control for null value I add it to the list of ingredients of the pizza
+                        if (ingredientInDb != null)
+                        {
+                            data.Pizza.Ingredients.Add(ingredientInDb);
+                        }
+                    }
+
+                } // else I do not add any ingredient because the user has not selected any ingredient, the list of the ingredients to the pizza I want to add to the db remains empty       
+
+                //finally I create the pizza and I add it to the database with all the parameters it needs to store
+
+                Pizza newPizza = new()
+                {
+                    Name = data.Pizza.Name,
+                    Description = data.Pizza.Description,
+                    Price = data.Pizza.Price,
+                    ImageUrl = data.Pizza.ImageUrl,
+                    PizzaCategoryId = data.Pizza.PizzaCategoryId,
+                    Ingredients = data.Pizza.Ingredients
+                };
 
                 _myDb.Pizzas.Add(newPizza);
                 _myDb.SaveChanges();
 
                 return RedirectToAction("Index");
-                
+
 
             }
             catch (Exception ex)
@@ -162,7 +220,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         {
             try
             {
-                
+
                 Pizza? pizzaToEdit = _myDb.Pizzas.Where(Pizza => Pizza.Name == name).FirstOrDefault();
 
                 if (pizzaToEdit == null)
@@ -182,14 +240,14 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                     return View("Update", formModel);
                 }
 
-               
+
             }
             catch (Exception ex)
             {
                 var errorModel = new ErrorViewModel
                 {
                     //ErrorMessage = $"An error occurred: {ex.Message}",
-                    ErrorMessage= ex.Message,
+                    ErrorMessage = ex.Message,
                     RequestId = HttpContext.TraceIdentifier
                 };
                 return View("Error", errorModel);
@@ -211,7 +269,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                     data.PizzaCategories = pizzaCategories;
                     return View("Update", data);
                 }
-                
+
                 Pizza? PizzaToUpdate = _myDb.Pizzas.Find(id);
 
                 if (PizzaToUpdate != null)
@@ -221,8 +279,8 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                     EntityEntry<Pizza> entryEntity = _myDb.Entry(PizzaToUpdate);
                     entryEntity.CurrentValues.SetValues(data.Pizza);
                     */
-                // this code worked
-                /**/
+                    // this code worked
+                    /**/
                     PizzaToUpdate.Name = data.Pizza.Name;
                     PizzaToUpdate.Description = data.Pizza.Description;
                     PizzaToUpdate.Price = data.Pizza.Price;
@@ -241,7 +299,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                         RequestId = HttpContext.TraceIdentifier
                     };
                     return View("Error", errorModel);
-                }             
+                }
             }
             catch (Exception ex)
             {
@@ -260,7 +318,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
         public ActionResult Delete(int id)
         {
             try
-            {              
+            {
                 Pizza? PizzaToDelete = _myDb.Pizzas.Where(Pizza => Pizza.Id == id).FirstOrDefault();
 
                 if (PizzaToDelete != null)
@@ -278,14 +336,14 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                         RequestId = HttpContext.TraceIdentifier
                     };
                     return View("Error", errorModel);
-                }           
+                }
             }
             catch (Exception ex)
             {
                 var errorModel = new ErrorViewModel
                 {
-                    
-                    ErrorMessage= ex.Message,
+
+                    ErrorMessage = ex.Message,
                     RequestId = HttpContext.TraceIdentifier
                 };
                 return View("Error", errorModel);

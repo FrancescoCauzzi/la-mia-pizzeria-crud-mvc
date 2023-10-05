@@ -79,9 +79,10 @@ namespace la_mia_pizzeria_crud_mvc
                 defaults: new { controller = "Pizza", action = "Create" });
             */
 
+            // Down here remember to change for the final version
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");          
+                pattern: "{controller=Pizza}/{action=Index}/{id?}");          
             
 
             app.Run();
