@@ -137,7 +137,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 {
                     List<PizzaCategory> pizzaCategories = _myDb.PizzaCategories.ToList();
                     data.PizzaCategories = pizzaCategories;
-                    // now I initialize a new emptu list
+                    // now I initialize a new empty list
                     List<SelectListItem> allIngredientsSelectList = new List<SelectListItem>();
                     // and I fill it with all the ingredients because I want to show them in the form if the form is not filled well so the user can input them again
 
@@ -221,7 +221,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
             try
             {
 
-                Pizza? pizzaToEdit = _myDb.Pizzas.Where(Pizza => Pizza.Name == name).FirstOrDefault();
+                Pizza? pizzaToEdit = _myDb.Pizzas.Where(Pizza => Pizza.Name == name).Include(pizza => pizza.Ingredients).FirstOrDefault();
 
                 if (pizzaToEdit == null)
                 {
@@ -236,7 +236,30 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 {
                     List<PizzaCategory> pizzaCategories = _myDb.PizzaCategories.ToList();
 
-                    PizzaFormModel formModel = new PizzaFormModel { Pizza = pizzaToEdit, PizzaCategories = pizzaCategories };
+                    // here I initialize a new list with all the ingredients from the database
+                    List<Ingredient> dbIngredientsList = _myDb.Ingredients.ToList();
+
+                    // down here I create a new empty list of selected items
+                    List<SelectListItem> selectListItems = new List<SelectListItem>();
+
+                    // down here I iterate through the list of ingredients from the database to get some data to show in the form the id converted to string, the name and least but not last the selected bool value which is important for a user friendly form so that the previus ingredients are still selected
+                    foreach (Ingredient ingredient in dbIngredientsList)
+                    {
+                        selectListItems.Add(new SelectListItem
+                        {
+                            Value = ingredient.Id.ToString(),
+                            Text = ingredient.Name,
+                            // bool value to check if the ingredient is selected or not, I put the ! symbol because I'm in the sure that pizzaToEdit cannot be null in the else block                          
+                            Selected = pizzaToEdit.Ingredients!.Any(ingredientAssociated => ingredientAssociated.Id == ingredient.Id)
+                        });
+                    }
+
+                    PizzaFormModel formModel = new()
+                    {
+                        Pizza = pizzaToEdit,
+                        PizzaCategories = pizzaCategories,
+                        Ingredients = selectListItems
+                    };
                     return View("Update", formModel);
                 }
 
@@ -265,27 +288,58 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
 
                 if (!ModelState.IsValid)
                 {
+                    // Categories
                     List<PizzaCategory> pizzaCategories = _myDb.PizzaCategories.ToList();
                     data.PizzaCategories = pizzaCategories;
+
+                    // Igredients
+                    List<Ingredient> dbIngredientList = _myDb.Ingredients.ToList();
+                    List<SelectListItem> selectListItem = new();
+
+                    // If I want to rerender the form with the same data I need to initialize a new list of selected ingredients and add the needed info
+                    foreach (Ingredient ingredient in dbIngredientList)
+                    {
+                        // the selected items are the ones that were previously selected in the form 
+                        selectListItem.Add(new SelectListItem
+                        {
+                            Value = ingredient.Id.ToString(),
+                            Text = ingredient.Name
+                        });
+                    }
+
+                    data.Ingredients = selectListItem;
+
                     return View("Update", data);
                 }
 
-                Pizza? PizzaToUpdate = _myDb.Pizzas.Find(id);
+                Pizza? pizzaToUpdate = _myDb.Pizzas.Where(pizza => pizza.Id == id).Include(pizza => pizza.Ingredients).FirstOrDefault();
 
-                if (PizzaToUpdate != null)
+                if (pizzaToUpdate != null)
                 {
-                    // The code below threw an error
-                    /*
-                    EntityEntry<Pizza> entryEntity = _myDb.Entry(PizzaToUpdate);
-                    entryEntity.CurrentValues.SetValues(data.Pizza);
-                    */
-                    // this code worked
-                    /**/
-                    PizzaToUpdate.Name = data.Pizza.Name;
-                    PizzaToUpdate.Description = data.Pizza.Description;
-                    PizzaToUpdate.Price = data.Pizza.Price;
-                    PizzaToUpdate.ImageUrl = data.Pizza.ImageUrl;
-                    PizzaToUpdate.PizzaCategoryId = data.Pizza.PizzaCategoryId;
+                    // down here I clear the ingrediets list inside my pizza object because I want to add only the ingredients that the user has selected                    
+                    pizzaToUpdate.Ingredients.Clear();
+
+                    pizzaToUpdate.Name = data.Pizza.Name;
+                    pizzaToUpdate.Description = data.Pizza.Description;
+                    pizzaToUpdate.Price = data.Pizza.Price;
+                    pizzaToUpdate.ImageUrl = data.Pizza.ImageUrl;
+                    pizzaToUpdate.PizzaCategoryId = data.Pizza.PizzaCategoryId;
+
+                    // down here I add the ingredients to the pizza accordingly to the data coming from the form
+                    if (data.SelectedIngredientsId != null)
+                    {
+                        foreach (string igredientselectedId in data.SelectedIngredientsId)
+                        {
+                            int intIgredientselectedId = int.Parse(igredientselectedId);
+
+                            Ingredient? igredientInDb = _myDb.Ingredients.Where(Igredient => Igredient.Id == intIgredientselectedId).FirstOrDefault();
+
+                            if (igredientInDb != null)
+                            {
+                                pizzaToUpdate.Ingredients.Add(igredientInDb);
+                            }
+                        }
+                    }
 
                     _myDb.SaveChanges();
 

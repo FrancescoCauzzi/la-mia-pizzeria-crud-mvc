@@ -351,3 +351,7 @@
 05-10-2023 14:42:06 LOG: User has reached the page Pizza > Index
 05-10-2023 14:42:43 LOG: User has reached the page Pizza > Index
 05-10-2023 14:43:26 LOG: User has reached the page Pizza > Index
+05-10-2023 15:10:47 LOG: User has reached the page Pizza > Index
+05-10-2023 15:11:18 LOG: User has reached the page Pizza > Index
+05-10-2023 15:26:01 LOG: User has reached the page Pizza > Index
+05-10-2023 15:26:36 LOG: User has reached the page Pizza > Index
