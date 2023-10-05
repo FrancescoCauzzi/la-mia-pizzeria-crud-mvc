@@ -237,7 +237,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                 {
                     var errorModel = new ErrorViewModel
                     {
-                        ErrorMessage = $"The pizza you are searching has not been found",
+                        ErrorMessage = $"The pizza you are trying to modify has not been found",
                         RequestId = HttpContext.TraceIdentifier
                     };
                     return View("Error", errorModel);

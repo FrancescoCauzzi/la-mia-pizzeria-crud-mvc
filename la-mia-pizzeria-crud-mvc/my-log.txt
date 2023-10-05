@@ -334,3 +334,8 @@
 04-10-2023 18:16:31 LOG: User has reached the page Pizza > Index
 04-10-2023 18:16:35 LOG: User has reached the page Pizza > Index
 04-10-2023 18:16:36 LOG: User has reached the page Pizza Ham And Mushrooms > Details
+05-10-2023 09:13:16 LOG: User has reached the page Pizza > Index
+05-10-2023 09:13:25 LOG: User has reached the page Pizza Sausage and Rapini > Details
+05-10-2023 09:13:39 LOG: User has reached the page Pizza > Index
+05-10-2023 09:14:26 LOG: User has reached the page Pizza > Index
+05-10-2023 12:43:43 LOG: User has reached the page Pizza > Index

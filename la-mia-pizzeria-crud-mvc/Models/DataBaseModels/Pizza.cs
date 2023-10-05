@@ -32,13 +32,18 @@ namespace la_mia_pizzeria_crud_mvc.Models.DataBaseModels
         [UrlOrFilePath]
         [MaxLength(500)]
         public string? ImageUrl { get; set; }
-        
+
 
         // Foreign Key, 1 pizza can have only one category (PizzaCategoryId)
         [ForeignKey("PizzaCategory")]
         public int? PizzaCategoryId { get; set; }
 
         public PizzaCategory? PizzaCategory { get; set; }
+
+        // Down here we create the N:N relationship with the ingredients, we add the ? because we can have a pizza without ingredients specified
+
+
+        public List<Ingredient>? Ingredients { get; set; }
 
 
         // Empty constructor
