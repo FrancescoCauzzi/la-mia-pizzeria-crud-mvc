@@ -43,7 +43,7 @@ html {
 
                     .__home-img {
                         min-width: 350px;
-                        height:450px;
+                        height: 450px;
                         width: calc(64% / 2 * 1 - (15px / 2 * 1));
 
                         img {
@@ -64,10 +64,12 @@ html {
                     .__pizza-card {
                         min-width: 250px;
                         width: calc(100% / 5 * 1 - (15px / 6 * 5));
+                        background: linear-gradient(to right, green, white, red);
+
 
                         img {
                             width: 100%;
-                            height: 100%;
+                            height: 250px;
                             object-fit: cover;
                         }
                     }
@@ -80,31 +82,41 @@ html {
 
             .__pizza-details-ctn {
                 .__pizza-details-card {
+                    width: 500px;
                     min-width: 250px;
                     position: relative;
 
-                    .__detail-btn-ctn {
-                        position: absolute;
-                        top: 2px;
-                        right: 4px;
+                    .__image-det-ctn {
+                        width: 100%;
+                    }
+
+                    .__written-details {
+                        background: linear-gradient(to right, green, white, red);
+                        width: 100%;
                     }
                 }
 
-                .__btn-details-ctn {
-                    min-width: 250px;
+                .__detail-btn-ctn {
+                    position: absolute;
+                    top: 2px;
+                    right: 4px;
                 }
             }
-        }
 
-        .__footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 7vh;
-            white-space: nowrap;
-            line-height: 60px;
-            z-index: 2;
-            background-color: black;
+            .__btn-details-ctn {
+                min-width: 250px;
+            }
         }
+    }
+
+    .__footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 7vh;
+        white-space: nowrap;
+        line-height: 60px;
+        z-index: 2;
+        background-color: black;
     }
 }

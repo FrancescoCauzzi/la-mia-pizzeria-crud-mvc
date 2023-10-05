@@ -355,3 +355,63 @@
 05-10-2023 15:11:18 LOG: User has reached the page Pizza > Index
 05-10-2023 15:26:01 LOG: User has reached the page Pizza > Index
 05-10-2023 15:26:36 LOG: User has reached the page Pizza > Index
+05-10-2023 15:32:55 LOG: User has reached the page Pizza > Index
+05-10-2023 15:33:13 LOG: User has reached the page Pizza > Index
+05-10-2023 15:33:46 LOG: User has reached the page Pizza > Index
+05-10-2023 15:34:29 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 15:38:48 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 15:41:29 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 15:42:03 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 15:43:54 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 15:44:11 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 15:44:24 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 15:44:35 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 15:45:18 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 15:49:05 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 15:53:01 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 15:55:31 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 15:59:40 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 16:06:16 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 16:06:19 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 16:06:51 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 16:14:21 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 16:15:14 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 16:15:23 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 16:16:02 LOG: User has reached the page Pizza > Index
+05-10-2023 16:16:12 LOG: User has reached the page Pizza Spicy Salami > Details
+05-10-2023 16:16:40 LOG: User has reached the page Pizza > Index
+05-10-2023 16:16:42 LOG: User has reached the page Pizza Ham And Mushrooms > Details
+05-10-2023 16:16:45 LOG: User has reached the page Pizza > Index
+05-10-2023 16:16:46 LOG: User has reached the page Pizza Tuna And Onions > Details
+05-10-2023 16:16:47 LOG: User has reached the page Pizza > Index
+05-10-2023 16:16:50 LOG: User has reached the page Pizza Pizza Test 7 > Details
+05-10-2023 16:16:53 LOG: User has reached the page Pizza > Index
+05-10-2023 16:16:54 LOG: User has reached the page Pizza Marinara > Details
+05-10-2023 16:16:59 LOG: User has reached the page Pizza > Index
+05-10-2023 16:17:02 LOG: User has reached the page Pizza Spicy Salami > Details
+05-10-2023 16:18:06 LOG: User has reached the page Pizza Spicy Salami > Details
+05-10-2023 16:18:50 LOG: User has reached the page Pizza > Index
+05-10-2023 16:18:52 LOG: User has reached the page Pizza Spicy Salami > Details
+05-10-2023 16:18:54 LOG: User has reached the page Pizza > Index
+05-10-2023 16:18:55 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 16:19:23 LOG: User has reached the page Pizza > Index
+05-10-2023 16:19:24 LOG: User has reached the page Pizza Spicy Salami > Details
+05-10-2023 16:19:26 LOG: User has reached the page Pizza > Index
+05-10-2023 16:19:27 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 16:19:31 LOG: User has reached the page Pizza > Index
+05-10-2023 16:19:33 LOG: User has reached the page Pizza Sausage and Rapini > Details
+05-10-2023 16:19:35 LOG: User has reached the page Pizza > Index
+05-10-2023 16:19:38 LOG: User has reached the page Pizza Marinara > Details
+05-10-2023 16:19:40 LOG: User has reached the page Pizza > Index
+05-10-2023 16:19:43 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 16:20:24 LOG: User has reached the page Pizza > Index
+05-10-2023 16:20:25 LOG: User has reached the page Pizza Spicy Salami > Details
+05-10-2023 16:20:28 LOG: User has reached the page Pizza > Index
+05-10-2023 16:20:29 LOG: User has reached the page Pizza Sea Food > Details
+05-10-2023 16:20:31 LOG: User has reached the page Pizza > Index
+05-10-2023 16:20:33 LOG: User has reached the page Pizza Marinara > Details
+05-10-2023 16:20:38 LOG: User has reached the page Pizza > Index
+05-10-2023 16:20:40 LOG: User has reached the page Pizza Pizza Test 7 > Details
+05-10-2023 16:20:42 LOG: User has reached the page Pizza > Index
+05-10-2023 16:23:24 LOG: User has reached the page Pizza Tuna And Onions > Details
+05-10-2023 16:23:27 LOG: User has reached the page Pizza > Index

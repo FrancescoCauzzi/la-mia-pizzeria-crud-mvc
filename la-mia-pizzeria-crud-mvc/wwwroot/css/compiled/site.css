@@ -52,28 +52,37 @@ html body .__main-container .__pizza-index .__pizza-container {
 html body .__main-container .__pizza-index .__pizza-container .__pizza-card {
   min-width: 250px;
   width: calc(20% - 12.5px);
+  background: linear-gradient(to right, green, white, red);
 }
 html body .__main-container .__pizza-index .__pizza-container .__pizza-card img {
   width: 100%;
-  height: 100%;
+  height: 250px;
   object-fit: cover;
 }
 html body .__main-container .__pizza-index .__pizza-index-go-back-button {
   padding-top: 10px;
 }
 html body .__main-container .__pizza-details-ctn .__pizza-details-card {
+  width: 500px;
   min-width: 250px;
   position: relative;
 }
-html body .__main-container .__pizza-details-ctn .__pizza-details-card .__detail-btn-ctn {
+html body .__main-container .__pizza-details-ctn .__pizza-details-card .__image-det-ctn {
+  width: 100%;
+}
+html body .__main-container .__pizza-details-ctn .__pizza-details-card .__written-details {
+  background: linear-gradient(to right, green, white, red);
+  width: 100%;
+}
+html body .__main-container .__pizza-details-ctn .__detail-btn-ctn {
   position: absolute;
   top: 2px;
   right: 4px;
 }
-html body .__main-container .__pizza-details-ctn .__btn-details-ctn {
+html body .__main-container .__btn-details-ctn {
   min-width: 250px;
 }
-html body .__footer {
+html .__footer {
   position: fixed;
   bottom: 0;
   width: 100%;
