@@ -524,3 +524,7 @@
 06-10-2023 17:32:25 LOG: User has reached the page Pizza > Index
 06-10-2023 17:32:39 LOG: User has reached the page Pizza > Index
 06-10-2023 17:33:07 LOG: User has reached the page Pizza > Index
+06-10-2023 17:53:18 LOG: User has reached the page Pizza > Index
+06-10-2023 17:53:55 LOG: User has reached the page Pizza > Index
+06-10-2023 17:55:00 LOG: User has reached the page Pizza > Index
+06-10-2023 17:55:03 LOG: User has reached the page Pizza Tuna And Onions > Details
