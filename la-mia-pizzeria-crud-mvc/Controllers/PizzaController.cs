@@ -10,9 +10,11 @@ using la_mia_pizzeria_crud_mvc.CustomLoggers;
 using la_mia_pizzeria_crud_mvc.Models.DataBaseModels;
 using Azure;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace la_mia_pizzeria_crud_mvc.Controllers
 {
+    [Authorize]
     public class PizzaController : Controller
     {
         // Dependency Injection
