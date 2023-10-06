@@ -4,9 +4,13 @@
 }
 
 <div class="container d-flex justify-content-center flex-column text-center __pizza-index">
+    @if (User.IsInRole("ADMIN"))
+    {
+        
     <div class="__pizza-index-go-back-button">
         <a href="@Url.Action("Create","Pizza")" class="btn btn-primary">Add New Pizza</a>
     </div>
+    }
     <h1 class="display-4">These are our pizzas</h1>
 
     @* nella slide sintassi diversa da questa sotto  *@
@@ -26,12 +30,16 @@
                         <h5 class="card-title">@pizza.Name</h5>
                         <p class="card-text">@pizza.Description</p>
                         <p class="card-text">@pizza.Price €</p>
-                        <div class="__buttons-card-ctn d-flex gap-1 justify-content-between">
+                        <div class="__buttons-card-ctn d-flex gap-4 justify-content-center">
                             <a href="@Url.Action("Details", "Pizza", new { name = pizza.Name })" class="btn btn-primary">Details</a>
+                            @if (User.IsInRole("ADMIN"))
+                            {
+                                
                             <a href="@Url.Action("Update", "Pizza", new { name = pizza.Name })" class="btn btn-primary">Edit</a>
 
                             @*Delete form*@
                             @await Html.PartialAsync("DeleteFormPartial", pizza)
+                            }
 
                             
                         </div>

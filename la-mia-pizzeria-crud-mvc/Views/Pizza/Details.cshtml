@@ -58,6 +58,9 @@ ViewData["Title"] = Model.Name;
                     </div>
                 </div>
             </div>
+            @if (User.IsInRole("ADMIN"))
+            {
+                
             <div class="__detail-btn-ctn d-flex gap-2 ">                
                                                                      
                 <a  href="@Url.Action("Update", "Pizza", new { name = Model.Name })" class="btn btn-primary p-2 __edit-icon">
@@ -67,6 +70,7 @@ ViewData["Title"] = Model.Name;
                 @await Html.PartialAsync("DeleteFormPartial")
                                        
             </div>                        
+            }
         </div>  
         
     </div>

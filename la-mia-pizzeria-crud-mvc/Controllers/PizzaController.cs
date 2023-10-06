@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace la_mia_pizzeria_crud_mvc.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "ADMIN,USER")]
     public class PizzaController : Controller
     {
         // Dependency Injection
@@ -101,6 +101,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
 
 
         // GET: PizzaController/Create
+        [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public ActionResult Create()
         {
