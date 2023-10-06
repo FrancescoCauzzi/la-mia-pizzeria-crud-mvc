@@ -1,4 +1,16 @@
 
+$linear-gradient: linear-gradient(to right, #7ad15d, white, #a80706);
+$primary: #a6704f;
+$danger: #a80706;
+$info: #7ad15d;
+
+@mixin cover-properties {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50px;
+    border: 2px solid $info;
+}
 
 html {
     font-size: 14px;
@@ -11,6 +23,21 @@ html {
     min-height: 100%;
     z-index: 0;
 
+    .btn-primary {
+        background-color: $primary !important;
+        border-color: black !important;
+    }
+
+    .btn-danger {
+        background-color: $danger !important;
+        border-color: black !important;
+    }
+
+    .btn-info {
+        background-color: $info !important;
+        border-color: #4d843a !important;
+    }
+
     body {
         margin-bottom: 60px;
 
@@ -20,6 +47,15 @@ html {
             z-index: 2;
             width: 100%;
             background-color: black;
+
+            .__logo-ctn {
+                height: 50px;
+                width: 50px;
+
+                img {
+                    @include cover-properties;
+                }
+            }
 
             a {
                 color: white;
@@ -44,13 +80,19 @@ html {
             .__main-sub-ctn {
                 height: 100%;
                 width: 100%;
-                h1, h2, h3, h4{
-                color: #ff6a00;
-                text-shadow: -2px -2px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000;
 
+                h1, h2, h3, h4 {
+                    color: #ffb479;
+                    text-shadow: -2px -2px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000;
                 }
 
                 .__home-ctn {
+                    .__home-logo-ctn {
+                        height: 100px;
+                        img {
+                            @include cover-properties;
+                        }
+                    }
 
                     .__home-imgs-ctn {
                         width: 100%;
@@ -62,10 +104,7 @@ html {
                             display: none;
 
                             img {
-                                border-radius: 25px;
-                                width: 100%;
-                                height: 100%;
-                                object-fit: cover;
+                                @include cover-properties;
                                 border: 3px solid #be7553;
                             }
                         }
@@ -85,7 +124,7 @@ html {
                         .__pizza-card {
                             min-width: 250px;
                             width: calc(100% / 5 * 1 - (15px / 6 * 5));
-                            background: linear-gradient(to right, green, white, red);
+                            background: $linear-gradient;
 
 
                             img {
@@ -112,7 +151,7 @@ html {
                         }
 
                         .__written-details {
-                            background: linear-gradient(to right, green, white, red);
+                            background: $linear-gradient;
                             width: 100%;
                         }
                     }

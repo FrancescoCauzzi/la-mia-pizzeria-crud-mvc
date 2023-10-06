@@ -491,3 +491,25 @@
 06-10-2023 16:19:06 LOG: User has reached the page Pizza > Index
 06-10-2023 16:21:22 LOG: User has reached the page Pizza > Index
 06-10-2023 16:21:24 LOG: User has reached the page Pizza Tuna And Onions > Details
+06-10-2023 16:40:33 LOG: User has reached the page Pizza > Index
+06-10-2023 16:43:52 LOG: User has reached the page Pizza > Index
+06-10-2023 16:44:00 LOG: User has reached the page Pizza Ham And Mushrooms > Details
+06-10-2023 16:47:16 LOG: User has reached the page Pizza > Index
+06-10-2023 16:50:04 LOG: User has reached the page Pizza > Index
+06-10-2023 16:50:05 LOG: User has reached the page Pizza Tuna And Onions > Details
+06-10-2023 16:53:32 LOG: User has reached the page Pizza > Index
+06-10-2023 16:59:55 LOG: User has reached the page Pizza > Index
+06-10-2023 17:06:06 LOG: User has reached the page Pizza > Index
+06-10-2023 17:06:37 LOG: User has reached the page Pizza > Index
+06-10-2023 17:07:06 LOG: User has reached the page Pizza > Index
+06-10-2023 17:07:31 LOG: User has reached the page Pizza > Index
+06-10-2023 17:09:58 LOG: User has reached the page Pizza > Index
+06-10-2023 17:11:17 LOG: User has reached the page Pizza > Index
+06-10-2023 17:11:33 LOG: User has reached the page Pizza > Index
+06-10-2023 17:11:42 LOG: User has reached the page Pizza > Index
+06-10-2023 17:12:00 LOG: User has reached the page Pizza > Index
+06-10-2023 17:12:08 LOG: User has reached the page Pizza > Index
+06-10-2023 17:13:29 LOG: User has reached the page Pizza > Index
+06-10-2023 17:21:03 LOG: User has reached the page Pizza > Index
+06-10-2023 17:21:06 LOG: User has reached the page Pizza Tuna And Onions > Details
+06-10-2023 17:21:30 LOG: User has reached the page Pizza > Index

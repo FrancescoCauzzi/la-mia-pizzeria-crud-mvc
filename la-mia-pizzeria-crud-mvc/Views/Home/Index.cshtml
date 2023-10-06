@@ -7,7 +7,13 @@
 }
 
 <div class="__home-ctn container-fluid text-center d-flex justify-content-center flex-column gap-4 ">
-    <h1 class="">Pizzeria Bella Italia</h1>
+    <div class="d-flex justify-content-center align-items-center gap-3">
+        <h1 class="">Pizzeria Bella Italia</h1>
+        <div class="__home-logo-ctn">
+            <img class="" src="~/images/background_dalle.png" alt="Logo">
+        </div>
+
+    </div>
     @if (SignInManager.IsSignedIn(User))
     {
         @if (User.IsInRole("ADMIN"))
@@ -27,9 +33,15 @@
         <div class="__home-slide __active">
             <img src="/images/restaurant1.png" alt="no image" srcset="">
         </div>
+        <div class="__home-slide ">
+            <img src="/images/background2.jpg" alt="" srcset="">
+        </div>
         <div class="__home-slide">
             <img src="/images/restaurant2.png" alt="" srcset="">
         </div>   
+        <div class="__home-slide ">
+            <img src="/images/background_image.jpg" alt="" srcset="">
+        </div>
         <div class="__home-slide ">
             <img src="/images/backgorund1.jpg" alt="" srcset="">
         </div>
