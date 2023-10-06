@@ -79,7 +79,7 @@ html body .__main-container .__pizza-details-ctn .__detail-btn-ctn {
   top: 2px;
   right: 4px;
 }
-html body .__main-container .__btn-details-ctn {
+html body .__main-container .__go-back-btns-ctn {
   min-width: 250px;
 }
 html .__footer {

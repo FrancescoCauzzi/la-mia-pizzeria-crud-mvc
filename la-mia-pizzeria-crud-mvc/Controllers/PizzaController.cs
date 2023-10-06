@@ -139,7 +139,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                     data.PizzaCategories = pizzaCategories;
                     // now I initialize a new empty list
                     List<SelectListItem> allIngredientsSelectList = new List<SelectListItem>();
-                    // and I fill it with all the ingredients because I want to show them in the form if the form is not filled well so the user can input them again
+                    // and I fill it with all the ingredients because I want to show them in the form again if the form is not filled well so the user can input them again
 
                     List<Ingredient> databaseAllIngredients = _myDb.Ingredients.ToList();
 
@@ -199,14 +199,16 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
             }
             catch (Exception ex)
             {
-                string? innerException = ex.InnerException.ToString();
+                string innerException = "";
+                if (ex.InnerException != null)
+                {
+                    innerException = ex.InnerException.ToString();
+                }
                 var errorModel = new ErrorViewModel
                 {
-                    //ErrorMessage = $"An error occurred while inserting the new pizza in the database: {ex.InnerException}",
-
                     ErrorMessage = $"{ex.Message}: {innerException}",
                     RequestId = HttpContext.TraceIdentifier
-                };
+                };                
                 return View("Error", errorModel);
 
             }
@@ -242,14 +244,14 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                     // down here I create a new empty list of selected items
                     List<SelectListItem> selectListItems = new List<SelectListItem>();
 
-                    // down here I iterate through the list of ingredients from the database to get some data to show in the form the id converted to string, the name and least but not last the selected bool value which is important for a user friendly form so that the previus ingredients are still selected
+                    // down here I iterate through the list of ingredients from the database to get some data to show in the form: the id converted to string, the name and least but not last the selected bool value which is important for a user friendly form so that the previous ingredients are still selected
                     foreach (Ingredient ingredient in dbIngredientsList)
                     {
                         selectListItems.Add(new SelectListItem
                         {
                             Value = ingredient.Id.ToString(),
                             Text = ingredient.Name,
-                            // bool value to check if the ingredient is selected or not, I put the ! symbol because I'm in the sure that pizzaToEdit cannot be null in the else block                          
+                            // bool value to check if the ingredient is selected or not, I put the ! symbol because I'm sure that pizzaToEdit cannot be null in the else block                          
                             Selected = pizzaToEdit.Ingredients!.Any(ingredientAssociated => ingredientAssociated.Id == ingredient.Id)
                         });
                     }
@@ -292,11 +294,11 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
                     List<PizzaCategory> pizzaCategories = _myDb.PizzaCategories.ToList();
                     data.PizzaCategories = pizzaCategories;
 
-                    // Igredients
+                    // Ingredients
                     List<Ingredient> dbIngredientList = _myDb.Ingredients.ToList();
                     List<SelectListItem> selectListItem = new();
 
-                    // If I want to rerender the form with the same data I need to initialize a new list of selected ingredients and add the needed info
+                    // If I want to re-render the form with the same data I need to initialize a new list of selected ingredients and add the needed info
                     foreach (Ingredient ingredient in dbIngredientList)
                     {
                         // the selected items are the ones that were previously selected in the form 
@@ -316,7 +318,7 @@ namespace la_mia_pizzeria_crud_mvc.Controllers
 
                 if (pizzaToUpdate != null)
                 {
-                    // down here I clear the ingrediets list inside my pizza object because I want to add only the ingredients that the user has selected                    
+                    // down here I clear the ingredients list inside my pizza object because I want to add only the ingredients that the user has selected                    
                     pizzaToUpdate.Ingredients.Clear();
 
                     pizzaToUpdate.Name = data.Pizza.Name;

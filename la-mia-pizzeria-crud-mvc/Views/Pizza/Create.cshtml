@@ -10,17 +10,11 @@
         <h1>Insert a new pizza</h1>
         <form asp-controller="Pizza" asp-action="Create" method="post">
         @* common part *@
-        @await Html.PartialAsync("InnerFormCreateUpdate")
-            
+        @await Html.PartialAsync("InnerFormCreateUpdate")            
         </form>
-        <div class="__btn-details-ctn d-flex gap-1 py-2">
-            <div class="">
-                <a href="@Url.Action("Index", "Pizza")" class="btn btn-primary">Go Back to the pizzas list</a>
-            </div>
-            <div class="">
-                <a href="@Url.Action("Index","Home")" class="btn btn-primary">Go back to the homepage</a>
-            </div>
-        </div>
+        @await Html.PartialAsync("GoBackButtonsPartial")
+
+
     </div>
 
 </div>
