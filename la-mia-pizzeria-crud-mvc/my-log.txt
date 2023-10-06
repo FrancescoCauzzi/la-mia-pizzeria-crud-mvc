@@ -483,3 +483,11 @@
 06-10-2023 15:16:41 LOG: User has reached the page Pizza > Index
 06-10-2023 15:16:47 LOG: User has reached the page Pizza > Index
 06-10-2023 15:16:50 LOG: User has reached the page Pizza Sea Food > Details
+06-10-2023 15:21:34 LOG: User has reached the page Pizza > Index
+06-10-2023 16:08:32 LOG: User has reached the page Pizza > Index
+06-10-2023 16:14:27 LOG: User has reached the page Pizza > Index
+06-10-2023 16:14:40 LOG: User has reached the page Pizza > Index
+06-10-2023 16:17:52 LOG: User has reached the page Pizza > Index
+06-10-2023 16:19:06 LOG: User has reached the page Pizza > Index
+06-10-2023 16:21:22 LOG: User has reached the page Pizza > Index
+06-10-2023 16:21:24 LOG: User has reached the page Pizza Tuna And Onions > Details

@@ -7,7 +7,7 @@
 }
 
 <div class="__home-ctn container-fluid text-center d-flex justify-content-center flex-column gap-4 ">
-    <h1 class="display-4">Pizzeria Bella Italia</h1>
+    <h1 class="">Pizzeria Bella Italia</h1>
     @if (SignInManager.IsSignedIn(User))
     {
         @if (User.IsInRole("ADMIN"))
@@ -24,17 +24,54 @@
     }
     <h4>St. Andrews Street 23456-YOB, London, UK </h4>        
     <div class="__home-imgs-ctn d-flex justify-content-center flex-wrap">
-         <div class="__home-img">
+        <div class="__home-slide __active">
             <img src="/images/restaurant1.png" alt="no image" srcset="">
-
         </div>
-        <div class="__home-img">
+        <div class="__home-slide">
             <img src="/images/restaurant2.png" alt="" srcset="">
-
-        </div>                                  
+        </div>   
+        <div class="__home-slide ">
+            <img src="/images/backgorund1.jpg" alt="" srcset="">
+        </div>
     </div>
     <div class="">
         <partial name="_LoginHomePartial" />
     </div>
     
 </div>
+<script>
+
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.__home-slide');
+
+    // Define the function to cycle to the next slide
+    function nextSlide() {
+        // Remove the active class from the current slide
+        slides[currentSlideIndex].classList.remove('__active');
+
+        // Move to the next slide, or loop back to the start
+        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+
+        // Add the active class to the new current slide
+        slides[currentSlideIndex].classList.add('__active');
+    }
+
+    // Define an async function to start the slide show
+    async function startSlideShow(interval) {
+        return new Promise((resolve) => {
+            const slideInterval = setInterval(() => {
+                nextSlide();
+            }, interval);
+
+            // This will clear the interval and resolve the promise after 20 seconds
+            setTimeout(() => {
+                clearInterval(slideInterval);
+                resolve('Slide show ended');
+            }, 20000);
+        });
+    }
+
+    // Call the async function, passing 2000ms (2 seconds) as the interval
+    startSlideShow(5000).then(console.log);
+
+</script>
