@@ -21,7 +21,7 @@
     <span asp-validation-for="Pizza.Price" class="text-danger"></span>
 </div>
 <div class="mb-3">
-    <strong>Pizza Category:</strong>
+    <label for="PizzaCategory"><strong>Pizza Category:</strong></label>    
     <select asp-for="Pizza.PizzaCategoryId" rows="10" class="d-block w-100">
         <option value="">Select the pizza category</option>
         @foreach (PizzaCategory pizzaCategory in Model.PizzaCategories)
@@ -32,7 +32,7 @@
 </div>
 <!-- Multiple select for the ingredients -->
 <div class="mb-3">
-    <strong>Select Ingredients:</strong>
+    <label for="Ingredients"><strong>Ingredients:</strong></label>
     <select asp-for="SelectedIngredientsId"
             multiple="multiple"
             size="10"

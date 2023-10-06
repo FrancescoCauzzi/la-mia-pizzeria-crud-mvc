@@ -9,6 +9,10 @@ html {
     font-size: 16px;
   }
 }
+html label {
+  color: #ffb479;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000;
+}
 html .btn-primary {
   background-color: #a6704f !important;
   border-color: black !important;
@@ -18,7 +22,7 @@ html .btn-danger {
   border-color: black !important;
 }
 html .btn-info {
-  background-color: #7ad15d !important;
+  background-color: #428e08 !important;
   border-color: #4d843a !important;
 }
 html body {
@@ -39,7 +43,7 @@ html body .__header .__logo-ctn img {
   width: 100%;
   object-fit: cover;
   border-radius: 50px;
-  border: 2px solid #7ad15d;
+  border: 2px solid #428e08;
 }
 html body .__header a {
   color: white;
@@ -62,7 +66,7 @@ html body main .__main-sub-ctn {
 }
 html body main .__main-sub-ctn h1, html body main .__main-sub-ctn h2, html body main .__main-sub-ctn h3, html body main .__main-sub-ctn h4 {
   color: #ffb479;
-  text-shadow: -2px -2px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000;
 }
 html body main .__main-sub-ctn .__home-ctn .__home-logo-ctn {
   height: 100px;
@@ -72,7 +76,7 @@ html body main .__main-sub-ctn .__home-ctn .__home-logo-ctn img {
   width: 100%;
   object-fit: cover;
   border-radius: 50px;
-  border: 2px solid #7ad15d;
+  border: 2px solid #428e08;
 }
 html body main .__main-sub-ctn .__home-ctn .__home-imgs-ctn {
   width: 100%;
@@ -87,7 +91,7 @@ html body main .__main-sub-ctn .__home-ctn .__home-imgs-ctn .__home-slide img {
   width: 100%;
   object-fit: cover;
   border-radius: 50px;
-  border: 2px solid #7ad15d;
+  border: 2px solid #428e08;
   border: 3px solid #be7553;
 }
 html body main .__main-sub-ctn .__home-ctn .__home-imgs-ctn .__home-slide.__active {
