@@ -25,64 +25,64 @@ html body .__header .__navbar-toggler,
 html body .__header .__navbar-toggler-icon {
   background-color: gray;
 }
-html body .__main-container {
+html body main {
+  background-color: #862b2b;
+  min-height: 93vh;
   padding-top: 63px;
   padding-bottom: 40px;
-  min-height: 93vh;
-  background-color: #862b2b;
 }
-html body .__main-container .__home-ctn .__home-imgs-ctn {
+html body main .__main-sub-ctn .__home-ctn .__home-imgs-ctn {
   gap: 15px;
 }
-html body .__main-container .__home-ctn .__home-imgs-ctn .__home-img {
+html body main .__main-sub-ctn .__home-ctn .__home-imgs-ctn .__home-img {
   min-width: 350px;
   height: 450px;
   width: calc(32% - 7.5px);
 }
-html body .__main-container .__home-ctn .__home-imgs-ctn .__home-img img {
+html body main .__main-sub-ctn .__home-ctn .__home-imgs-ctn .__home-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-html body .__main-container .__pizza-index .__pizza-container {
+html body main .__main-sub-ctn .__pizza-index .__pizza-container {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
 }
-html body .__main-container .__pizza-index .__pizza-container .__pizza-card {
+html body main .__main-sub-ctn .__pizza-index .__pizza-container .__pizza-card {
   min-width: 250px;
   width: calc(20% - 12.5px);
   background: linear-gradient(to right, green, white, red);
 }
-html body .__main-container .__pizza-index .__pizza-container .__pizza-card img {
+html body main .__main-sub-ctn .__pizza-index .__pizza-container .__pizza-card img {
   width: 100%;
   height: 250px;
   object-fit: cover;
 }
-html body .__main-container .__pizza-index .__pizza-index-go-back-button {
+html body main .__main-sub-ctn .__pizza-index .__pizza-index-go-back-button {
   padding-top: 10px;
 }
-html body .__main-container .__pizza-details-ctn .__pizza-details-card {
+html body main .__main-sub-ctn .__pizza-details-ctn .__pizza-details-card {
   width: 500px;
   min-width: 250px;
   position: relative;
 }
-html body .__main-container .__pizza-details-ctn .__pizza-details-card .__image-det-ctn {
+html body main .__main-sub-ctn .__pizza-details-ctn .__pizza-details-card .__image-det-ctn {
   width: 100%;
 }
-html body .__main-container .__pizza-details-ctn .__pizza-details-card .__written-details {
+html body main .__main-sub-ctn .__pizza-details-ctn .__pizza-details-card .__written-details {
   background: linear-gradient(to right, green, white, red);
   width: 100%;
 }
-html body .__main-container .__pizza-details-ctn .__detail-btn-ctn {
+html body main .__main-sub-ctn .__pizza-details-ctn .__detail-btn-ctn {
   position: absolute;
   top: 2px;
   right: 4px;
 }
-html body .__main-container .__go-back-btns-ctn {
+html body main .__main-sub-ctn .__go-back-btns-ctn {
   min-width: 250px;
 }
-html .__footer {
+html body .__footer {
   position: fixed;
   bottom: 0;
   width: 100%;

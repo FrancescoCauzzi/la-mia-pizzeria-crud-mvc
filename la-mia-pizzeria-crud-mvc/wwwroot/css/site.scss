@@ -30,93 +30,99 @@ html {
             }
         }
 
-        .__main-container {
-            padding-top: 63px;
-            padding-bottom: 40px;
-            min-height: 93vh;
+        main {
             background-color: #862b2b;
 
-            .__home-ctn {
+            
+            min-height: 93vh;
+            padding-top: 63px;
+            padding-bottom: 40px;
+            .__main-sub-ctn{
 
-                .__home-imgs-ctn {
-                    gap: 15px;
+                .__home-ctn {
 
-                    .__home-img {
-                        min-width: 350px;
-                        height: 450px;
-                        width: calc(64% / 2 * 1 - (15px / 2 * 1));
+                    .__home-imgs-ctn {
+                        gap: 15px;
 
-                        img {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
+                        .__home-img {
+                            min-width: 350px;
+                            height: 450px;
+                            width: calc(64% / 2 * 1 - (15px / 2 * 1));
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                            }
                         }
                     }
                 }
-            }
 
-            .__pizza-index {
-                .__pizza-container {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 15px;
+                .__pizza-index {
+                    .__pizza-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 15px;
 
-                    .__pizza-card {
+                        .__pizza-card {
+                            min-width: 250px;
+                            width: calc(100% / 5 * 1 - (15px / 6 * 5));
+                            background: linear-gradient(to right, green, white, red);
+
+
+                            img {
+                                width: 100%;
+                                height: 250px;
+                                object-fit: cover;
+                            }
+                        }
+                    }
+
+                    .__pizza-index-go-back-button {
+                        padding-top: 10px;
+                    }
+                }
+
+                .__pizza-details-ctn {
+                    .__pizza-details-card {
+                        width: 500px;
                         min-width: 250px;
-                        width: calc(100% / 5 * 1 - (15px / 6 * 5));
-                        background: linear-gradient(to right, green, white, red);
+                        position: relative;
 
-
-                        img {
+                        .__image-det-ctn {
                             width: 100%;
-                            height: 250px;
-                            object-fit: cover;
+                        }
+
+                        .__written-details {
+                            background: linear-gradient(to right, green, white, red);
+                            width: 100%;
                         }
                     }
+
+                    .__detail-btn-ctn {
+                        position: absolute;
+                        top: 2px;
+                        right: 4px;
+                    }
                 }
 
-                .__pizza-index-go-back-button {
-                    padding-top: 10px;
-                }
-            }
-
-            .__pizza-details-ctn {
-                .__pizza-details-card {
-                    width: 500px;
+                .__go-back-btns-ctn {
                     min-width: 250px;
-                    position: relative;
-
-                    .__image-det-ctn {
-                        width: 100%;
-                    }
-
-                    .__written-details {
-                        background: linear-gradient(to right, green, white, red);
-                        width: 100%;
-                    }
-                }
-
-                .__detail-btn-ctn {
-                    position: absolute;
-                    top: 2px;
-                    right: 4px;
                 }
             }
+        }
 
-            .__go-back-btns-ctn {
-                min-width: 250px;
-            }
+
+        .__footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 7vh;
+            white-space: nowrap;
+            line-height: 60px;
+            z-index: 2;
+            background-color: black;
         }
     }
 
-    .__footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 7vh;
-        white-space: nowrap;
-        line-height: 60px;
-        z-index: 2;
-        background-color: black;
-    }
 }

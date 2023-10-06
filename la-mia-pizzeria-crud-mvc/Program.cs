@@ -1,5 +1,6 @@
 using la_mia_pizzeria_crud_mvc.CustomLoggers;
 using la_mia_pizzeria_crud_mvc.Database;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 
@@ -10,6 +11,14 @@ namespace la_mia_pizzeria_crud_mvc
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<PizzeriaContext>();
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<PizzeriaContext>();
+
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -53,6 +62,9 @@ namespace la_mia_pizzeria_crud_mvc
 
             app.UseRouting();
 
+            // authentication line in our setup
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.MapControllerRoute(
@@ -82,8 +94,9 @@ namespace la_mia_pizzeria_crud_mvc
             // Down here remember to change for the final version
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Pizza}/{action=Index}/{id?}");          
-            
+                pattern: "{controller=Pizza}/{action=Index}/{id?}");
+
+            app.MapRazorPages();
 
             app.Run();
         }

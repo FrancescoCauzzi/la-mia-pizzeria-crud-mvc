@@ -17,11 +17,13 @@
     <header class="__header py-1">
         @Html.Partial("_Navbar")
     </header>    
-    <div class="__main-container">
-        <main role="main" class="pb-3">
+    
+    <main role="main" class=" pb-3">
+        <div class="__main-sub-ctn">
             @RenderBody()
-        </main>
-    </div>
+        </div>
+    </main>
+    
 
     <footer class="__footer text-muted">
         @Html.Partial("_Footer")
