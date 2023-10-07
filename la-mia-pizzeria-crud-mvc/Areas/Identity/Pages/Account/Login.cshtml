@@ -6,7 +6,7 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-<div class="row">
+<div class="row __login-ctn">
     <div class="col-md-4">
         <section>
             <form id="account" method="post">
@@ -34,15 +34,15 @@
                 <div>
                     <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
                 </div>
-                <div>
+                <div >
                     <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        <a class="text-white" id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                     </p>
                     <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                        <a class="text-white" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
                     </p>
                     <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                        <a class="text-white" id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
                     </p>
                 </div>
             </form>
@@ -56,8 +56,9 @@
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
                     <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                        <p class="text-white">
+                            There are no external authentication services configured. See this <a class="" href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                article
                             about setting up this ASP.NET application to support logging in via external services</a>.
                         </p>
                     </div>

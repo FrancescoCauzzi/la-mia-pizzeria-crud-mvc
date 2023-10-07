@@ -6,7 +6,7 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<div class="row">
+<div class="row __register-ctn">
     <div class="col-md-4">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2>Create a new account.</h2>
@@ -38,7 +38,7 @@
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
                     <div>
-                        <p>
+                        <p class="text-white">
                             There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
                             about setting up this ASP.NET application to support logging in via external services</a>.
                         </p>

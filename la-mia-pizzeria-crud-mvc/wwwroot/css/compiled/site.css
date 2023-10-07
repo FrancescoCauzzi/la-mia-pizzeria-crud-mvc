@@ -1,3 +1,11 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 html {
   font-size: 14px;
   position: relative;
@@ -11,7 +19,6 @@ html {
 }
 html label {
   color: #ffb479;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000;
 }
 html .btn-primary {
   background-color: #a6704f !important;
@@ -22,7 +29,7 @@ html .btn-danger {
   border-color: black !important;
 }
 html .btn-info {
-  background-color: #428e08 !important;
+  background-color: #7ad15d !important;
   border-color: #4d843a !important;
 }
 html body {
@@ -43,7 +50,8 @@ html body .__header .__logo-ctn img {
   width: 100%;
   object-fit: cover;
   border-radius: 50px;
-  border: 2px solid #428e08;
+  border: 2px solid #7ad15d;
+  animation: spin 8s linear infinite;
 }
 html body .__header a {
   color: white;
@@ -68,6 +76,11 @@ html body main .__main-sub-ctn h1, html body main .__main-sub-ctn h2, html body 
   color: #ffb479;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000;
 }
+html body main .__main-sub-ctn .__login-ctn a, html body main .__main-sub-ctn .__login-ctn p, html body main .__main-sub-ctn .__register-ctn a, html body main .__main-sub-ctn .__register-ctn p {
+  text-decoration: none;
+  color: #ffb479;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000;
+}
 html body main .__main-sub-ctn .__home-ctn .__home-logo-ctn {
   height: 100px;
 }
@@ -76,7 +89,7 @@ html body main .__main-sub-ctn .__home-ctn .__home-logo-ctn img {
   width: 100%;
   object-fit: cover;
   border-radius: 50px;
-  border: 2px solid #428e08;
+  border: 2px solid #7ad15d;
 }
 html body main .__main-sub-ctn .__home-ctn .__home-imgs-ctn {
   width: 100%;
@@ -91,7 +104,7 @@ html body main .__main-sub-ctn .__home-ctn .__home-imgs-ctn .__home-slide img {
   width: 100%;
   object-fit: cover;
   border-radius: 50px;
-  border: 2px solid #428e08;
+  border: 2px solid #7ad15d;
   border: 3px solid #be7553;
 }
 html body main .__main-sub-ctn .__home-ctn .__home-imgs-ctn .__home-slide.__active {
@@ -126,11 +139,15 @@ html body main .__main-sub-ctn .__pizza-details-ctn .__pizza-details-card .__ima
 html body main .__main-sub-ctn .__pizza-details-ctn .__pizza-details-card .__written-details {
   background: linear-gradient(to right, #7ad15d, white, #a80706);
   width: 100%;
+  font-weight: 600;
 }
 html body main .__main-sub-ctn .__pizza-details-ctn .__detail-btn-ctn {
   position: absolute;
   top: 2px;
   right: 4px;
+}
+html body main .__main-sub-ctn .__create-form-ctn label, html body main .__main-sub-ctn .__update-form-ctn label {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000;
 }
 html body main .__main-sub-ctn .__go-back-btns-ctn {
   min-width: 250px;

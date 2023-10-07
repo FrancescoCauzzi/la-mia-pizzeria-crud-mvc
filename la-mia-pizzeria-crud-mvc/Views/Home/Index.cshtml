@@ -10,7 +10,7 @@
     <div class="d-flex justify-content-center align-items-center gap-3">
         <h1 class="">Pizzeria Bella Italia</h1>
         <div class="__home-logo-ctn">
-            <img class="" src="~/images/background_dalle.png" alt="Logo">
+            <img class="__logo" src="~/images/background_dalle.png" alt="Logo">
         </div>
 
     </div>
@@ -30,24 +30,7 @@
     }
     <h4>St. Andrews Street 23456-YOB, London, UK </h4>        
     <div class="__home-imgs-ctn d-flex justify-content-center flex-wrap">
-        <div class="__home-slide __active">
-            <img src="/images/restaurant1.png" alt="no image" srcset="">
-        </div>
-        <div class="__home-slide ">
-            <img src="/images/background2.jpg" alt="" srcset="">
-        </div>
-        <div class="__home-slide">
-            <img src="/images/restaurant2.png" alt="" srcset="">
-        </div>   
-        <div class="__home-slide ">
-            <img src="/images/background_image.jpg" alt="" srcset="">
-        </div>
-        <div class="__home-slide ">
-            <img src="/images/backgorund1.jpg" alt="" srcset="">
-        </div>
-        <div class="__home-slide ">
-            <img src="/images/italian_flag.png" alt="" srcset="">
-        </div>
+        <div id="__slider-container"></div>
     </div>
     <div class="">
         <partial name="_LoginHomePartial" />
@@ -55,6 +38,34 @@
     
 </div>
 <script>
+
+    const slidesData = [
+        { src: '/images/restaurant1.png', alt: 'no image' },
+        { src: '/images/background2.jpg', alt: '' },
+        { src: '/images/restaurant2.png', alt: '' },
+        { src: '/images/background_image.jpg', alt: '' },
+        { src: '/images/backgorund1.jpg', alt: '' },
+        { src: '/images/italian_flag.png', alt: '' },
+        { src: '/images/monalisa.jpg', alt: '' }
+
+    ];
+
+    let slidesHTML = '';
+
+    slidesData.forEach((slide, index) => {
+        const activeClass = index === 0 ? ' __active' : '';  // Add the __active class to the first slide
+        slidesHTML += `
+            <div class="__home-slide${activeClass}">
+                <img src="${slide.src}" alt="${slide.alt}" srcset="">
+            </div>
+        `;
+    });
+
+    // Now slidesHTML contains the HTML for all the slides
+
+    document.getElementById('__slider-container').innerHTML = slidesHTML;
+
+
 
     let currentSlideIndex = 0;
     const slides = document.querySelectorAll('.__home-slide');
@@ -79,10 +90,12 @@
             }, interval);
 
             // This will clear the interval and resolve the promise after 20 seconds
+            /*
             setTimeout(() => {
                 clearInterval(slideInterval);
                 resolve('Slide show ended');
-            }, 20000);
+            }, 200000);
+            */
         });
     }
 

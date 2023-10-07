@@ -3,7 +3,7 @@ $linear-gradient: linear-gradient(to right, #7ad15d, white, #a80706);
 $primary: #a6704f;
 $primary-lighter: #ffb479;
 $danger: #a80706;
-$info: #428e08;
+$info: #7ad15d;
 $text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000;
 
 @mixin cover-properties {
@@ -12,6 +12,21 @@ $text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 2px 2px 0 #000
     object-fit: cover;
     border-radius: 50px;
     border: 2px solid $info;
+}
+
+@mixin text-font {
+    color: #ffb479;
+    text-shadow: $text-shadow;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 html {
@@ -27,7 +42,7 @@ html {
 
     label {
         color: $primary-lighter;
-        text-shadow: $text-shadow;
+        //text-shadow: $text-shadow;
     }
 
 
@@ -62,6 +77,7 @@ html {
 
                 img {
                     @include cover-properties;
+                    animation: spin 8s linear infinite;
                 }
             }
 
@@ -92,6 +108,14 @@ html {
                 h1, h2, h3, h4 {
                     color: #ffb479;
                     text-shadow: $text-shadow;
+                }
+
+                .__login-ctn, .__register-ctn {
+                    ///////
+                    a, p {
+                        text-decoration: none;
+                        @include text-font;
+                    }
                 }
 
                 .__home-ctn {
@@ -162,6 +186,10 @@ html {
                         .__written-details {
                             background: $linear-gradient;
                             width: 100%;
+                            
+                            font-weight:600;
+                            
+
                         }
                     }
 
@@ -169,6 +197,12 @@ html {
                         position: absolute;
                         top: 2px;
                         right: 4px;
+                    }
+                }
+
+                .__create-form-ctn, .__update-form-ctn {
+                    label {
+                        text-shadow: $text-shadow;
                     }
                 }
 
